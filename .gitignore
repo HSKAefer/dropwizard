@@ -1,0 +1,6 @@
+# Maven target folder
+target
+# Eclipse bin folder
+bin
+# Eclipse project settings
+.settings
