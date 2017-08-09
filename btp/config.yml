@@ -5,13 +5,17 @@ database:
   # jdbc:h2:mem:btp - mem for in memory database otherwise it will be an embedded database file located at the url
   url: jdbc:h2:./target/btp
 
-server:
+server: 
+  adminContextPath: /
+  applicationContextPath: / 
   applicationConnectors:
     - type: http
       port: 8080
   adminConnectors:
     - type: http
       port: 8081
+  rootPath: /api/ # the application path is moved to a sub-url so that an webpage (asset) can be served via the root
+  
 
 logging:
   level: INFO
@@ -30,3 +34,11 @@ logging:
        archivedFileCount: 7
        timeZone: UTC
        maxFileSize: 10MB
+
+# assets:
+  # overrides:
+    # /: src/main/resources/webContent/
+    #  mappings:
+    # /webContent: /
+    # Override requests to /${1} to instead look in 
+    # ${working directory}/src/main/resources/webContent/${1}  
