@@ -5,6 +5,7 @@ import de.dokukaefer.btp.db.TeamDAO;
 import de.dokukaefer.btp.res.TeamResource;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
+import io.dropwizard.bundles.assets.ConfiguredAssetsBundle;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.migrations.MigrationsBundle;
@@ -33,10 +34,13 @@ public class BTPApplication extends Application<BTPConfiguration>{
 	@Override
 	public void initialize(Bootstrap<BTPConfiguration> bootstrap) {
 		// Map requests to /${1} to be found in the class path at /webContent/${1}
+		// with the configured assets bundle one can change css and js scripts without reloading the server
+		// info: configured assets bundle needs to be added in pom.xml
 		// see: https://github.com/dropwizard-bundles/dropwizard-configurable-assets-bundle
-		// configured assets bundle via bootstrap.addBundle(new ConfiguredAssetsBundle("/webContent/", "/", "btp.html"));
+		bootstrap.addBundle(new ConfiguredAssetsBundle("/webContent/", "/", "btp.htm"));
 		// info: assets bundle needs to be added in pom.xml
-		bootstrap.addBundle(new AssetsBundle("/webContent/", "/", "btp.html"));
+		//bootstrap.addBundle(new AssetsBundle("/webContent/", "/", "btp.html"));
+		
 		// the MigrationsBundle is required to execute ..*.jar db migrate config.yml
 		// it is possible to refactor databases with xml/yaml/json/sql formats
 		// here we use the migrations.xml file in src/main/resources

@@ -35,10 +35,13 @@ logging:
        timeZone: UTC
        maxFileSize: 10MB
 
-# assets:
-  # overrides:
-    # /: src/main/resources/webContent/
-    #  mappings:
-    # /webContent: /
+assets: # assets only works if the dependency dropwizard-configurable-assets-bundle is added to the pom
+ # mappings:
+   # /webContent: / btp.html # mappings equivalent to the ConfiguredAssetsBundle parameter
+  overrides:
     # Override requests to /${1} to instead look in 
     # ${working directory}/src/main/resources/webContent/${1}  
+    /: /src/main/resources/webContent/
+    #  mappings:
+    # /webContent: /
+    

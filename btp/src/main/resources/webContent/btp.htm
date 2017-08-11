@@ -1,0 +1,45 @@
+<!DOCTYPE html> <!-- required for bootstrap -->
+<html lang="de" ng-app="btpModul" class="btp application">
+	<head>
+		<meta http-equiv="content-type" content="text/html" charset="utf-8" />
+		<!-- bootstrap 3 meta information to ensure proper rendering and zooming
+			 see: https://www.w3schools.com/bootstrap/bootstrap_get_started.asp 
+			width=device-width sets the width of the page to the screen-width of a device
+			initial-scale=1 sets initial zoom level
+		-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="/css/style.css" />
+		<link rel="stylesheet" href="/css/bootstrap.css" />
+		<title>Badminton Tournament Platform</title>
+	</head>
+	
+	<body>
+	<div class="jombotron text-center">
+	<h1>Badminton Tournament Platform</h1>
+	</div>
+	
+	<!-- a container class is required to wrap site contents - nesting is not possible
+	class="container" provides responsive fixed width container
+	class="container-fluid" provides full width 
+	 -->
+	<div class="container">
+	    <p class="well">
+	    	<a href="#">Start</a> 
+	    	| <a href="#/teams">Teams</a> 
+	    	| <a href="#/players">Players</a> 
+	    	| <a href="#/matches">Matches</a>
+	    	| <a href="#/about">About</a>
+	    </p>
+	    
+	    
+	    <!-- ng-view ist container für die inhalte der eizelnen seiten. dadurch werden jsskripte und css nicht erneut geladen -->
+		 <div ng-view></div> 
+	</div>
+
+	<script src="/js/angular.js"></script>
+	<script src="/js/angular-route.js"></script>
+	<script src="/js/angular-resource.js"></script>
+	<script src="/js/bootstrap.js"></script>
+	<script src="/js/app.js"></script>
+	</body>
+</html>

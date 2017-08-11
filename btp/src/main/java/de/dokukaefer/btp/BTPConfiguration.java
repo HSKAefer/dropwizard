@@ -6,14 +6,20 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.dropwizard.Configuration;
+import io.dropwizard.bundles.assets.AssetsBundleConfiguration;
+import io.dropwizard.bundles.assets.AssetsConfiguration;
 import io.dropwizard.db.DataSourceFactory;
 
-public class BTPConfiguration extends Configuration {//implements AssetsBundleConfiguration {
+public class BTPConfiguration extends Configuration implements AssetsBundleConfiguration {
 	
 	@Valid
     @NotNull
     private DataSourceFactory database = new DataSourceFactory();
 	
+	@Valid
+	@NotNull
+	@JsonProperty
+	private AssetsConfiguration assets = AssetsConfiguration.builder().build();
 	
 	
 	 @JsonProperty("database")
@@ -25,14 +31,15 @@ public class BTPConfiguration extends Configuration {//implements AssetsBundleCo
 	    public void setDataSourceFactory(DataSourceFactory dataSourceFactory) {
 	        this.database = dataSourceFactory;
 	    }
-
-// not required right now - maybe later	 
-//	@Override
-//	public AssetsConfiguration getAssetsConfiguration() {
-//		return assets;
+ 
+	@Override
+	public AssetsConfiguration getAssetsConfiguration() {
+		return assets;
+	}
+	
+//	public void setAssetsConfiguration(AssetsConfiguration assets) {
+//		this.assets = assets;
 //	}
-//	
-//	@Valid
-//	@NotNull
-//	private AssetsConfiguration assets = AssetsConfiguration.builder().build();
+	
+
 }

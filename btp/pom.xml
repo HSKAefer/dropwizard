@@ -44,12 +44,11 @@
  
 		<!-- https://mvnrepository.com/artifact/io.dropwizard-bundles/dropwizard-configurable-assets-bundle -->
  		<!-- onnly required for the configuredAssetsBundle -->
-		<!-- 
 		<dependency>
 	   		<groupId>io.dropwizard-bundles</groupId>
 	   	 	<artifactId>dropwizard-configurable-assets-bundle</artifactId>
 	    	<version>1.0.5</version>
-		</dependency> -->
+		</dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
