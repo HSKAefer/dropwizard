@@ -1,10 +1,12 @@
 package de.dokukaefer.btp;
 
+import de.dokukaefer.btp.core.Player;
 import de.dokukaefer.btp.core.Team;
+import de.dokukaefer.btp.db.PlayerDAO;
 import de.dokukaefer.btp.db.TeamDAO;
+import de.dokukaefer.btp.res.PlayerResource;
 import de.dokukaefer.btp.res.TeamResource;
 import io.dropwizard.Application;
-import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.bundles.assets.ConfiguredAssetsBundle;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
@@ -19,7 +21,7 @@ public class BTPApplication extends Application<BTPConfiguration>{
 	}
 	
 	private final HibernateBundle<BTPConfiguration> hibernateBundle =
-	        new HibernateBundle<BTPConfiguration>(Team.class) {
+	        new HibernateBundle<BTPConfiguration>(Team.class, Player.class) {
 	            @Override
 	            public DataSourceFactory getDataSourceFactory(BTPConfiguration configuration) {
 	                return configuration.getDataSourceFactory();
@@ -58,7 +60,9 @@ public class BTPApplication extends Application<BTPConfiguration>{
 	@Override
 	public void run(BTPConfiguration configuration, Environment environment) throws Exception {
 		final TeamDAO teamDAO = new TeamDAO(hibernateBundle.getSessionFactory());
+		final PlayerDAO playerDAO = new PlayerDAO(hibernateBundle.getSessionFactory());
 		environment.jersey().register(new TeamResource(teamDAO));
+		environment.jersey().register(new PlayerResource(playerDAO, teamDAO));
 		// changes the application root path. since dropwizard 0.8.0 it can be changed in the yaml file via
 		// applicationContextPath: /
 		//rootPath: /application

@@ -8,10 +8,28 @@
          
     <changeSet id="1" author="dokukaefer">
     	<createTable tableName="TEAMS">
-    		<column name="TEAMID" type="bigint" autoIncrement="true">
+    		<column name="ID" type="bigint" autoIncrement="true">
     			<constraints primaryKey="true" nullable="false"/>
     		</column>
     		<column name="TEAMNAME" type="varchar(255)" />
     	</createTable>
+    </changeSet> 
+    
+    <changeSet id="2" author="dokukaefer">
+    	<createTable tableName="PLAYERS">
+    		<column name="ID" type="bigint" autoIncrement="true">
+    			<constraints primaryKey="true" nullable="false"/>
+    		</column>
+    		<column name="FIRSTNAME" type="varchar(255)" />
+    		<column name="LASTNAME" type="varchar(255)" />
+    		 <column name="TEAMID" type="bigint" />
+    	</createTable>
+    	 <addForeignKeyConstraint baseColumnNames="TEAMID"
+                                 baseTableName="PLAYERS"
+                                 constraintName="FK_PLAYERS_TEAM"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="TEAMS"/>
     </changeSet>  
 </databaseChangeLog>

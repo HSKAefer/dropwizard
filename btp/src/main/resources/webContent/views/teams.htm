@@ -1,4 +1,7 @@
-<table class="table">
+<!-- class="btn btn-primary" for the left sided button -->
+<a class="btn btn-primary pull-right" href="#/teams/new"><span class="glyphicon glyphicon-plus"></span>  Add Team</a>
+
+<table class="table table-striped">
 	<thead>
 		<tr>
 			<th>Team ID</th><th>Team Name</th>
@@ -6,7 +9,7 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="team in teams">
-			<td>{{team.teamid}}</td>
+			<td>{{team.id}}</td>
 			<td>{{team.teamname}}</td>
 		</tr>
 	</tbody>
