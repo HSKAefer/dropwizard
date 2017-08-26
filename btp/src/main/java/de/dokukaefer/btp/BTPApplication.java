@@ -1,9 +1,21 @@
 package de.dokukaefer.btp;
 
+import javax.ws.rs.client.Client;
+
+import org.glassfish.jersey.client.JerseyClientBuilder;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import de.dokukaefer.btp.core.Game;
 import de.dokukaefer.btp.core.Player;
 import de.dokukaefer.btp.core.Team;
+import de.dokukaefer.btp.db.GameDAO;
 import de.dokukaefer.btp.db.PlayerDAO;
 import de.dokukaefer.btp.db.TeamDAO;
+import de.dokukaefer.btp.exceptions.UnprocessableException;
+import de.dokukaefer.btp.health.TeamHealthCheck;
+import de.dokukaefer.btp.res.GameResource;
 import de.dokukaefer.btp.res.PlayerResource;
 import de.dokukaefer.btp.res.TeamResource;
 import io.dropwizard.Application;
@@ -16,12 +28,14 @@ import io.dropwizard.setup.Environment;
 
 public class BTPApplication extends Application<BTPConfiguration>{
 	
+	private static final Logger LOGGER = LoggerFactory.getLogger(BTPApplication.class);
+	
 	public static void main(String[] args) throws Exception {
 		new BTPApplication().run(args);
 	}
 	
 	private final HibernateBundle<BTPConfiguration> hibernateBundle =
-	        new HibernateBundle<BTPConfiguration>(Team.class, Player.class) {
+	        new HibernateBundle<BTPConfiguration>(Game.class, Team.class, Player.class) {
 	            @Override
 	            public DataSourceFactory getDataSourceFactory(BTPConfiguration configuration) {
 	                return configuration.getDataSourceFactory();
@@ -59,13 +73,21 @@ public class BTPApplication extends Application<BTPConfiguration>{
 	        
 	@Override
 	public void run(BTPConfiguration configuration, Environment environment) throws Exception {
+		final GameDAO gameDAO = new GameDAO(hibernateBundle.getSessionFactory());
 		final TeamDAO teamDAO = new TeamDAO(hibernateBundle.getSessionFactory());
 		final PlayerDAO playerDAO = new PlayerDAO(hibernateBundle.getSessionFactory());
+		final Client client = new JerseyClientBuilder().build();
+		
+		LOGGER.info("register the jersey REST resources");
 		environment.jersey().register(new TeamResource(teamDAO));
+		environment.jersey().register(new GameResource(gameDAO));
 		environment.jersey().register(new PlayerResource(playerDAO, teamDAO));
+		environment.jersey().register(new UnprocessableException());
 		// changes the application root path. since dropwizard 0.8.0 it can be changed in the yaml file via
 		// applicationContextPath: /
 		//rootPath: /application
+//		environment.healthChecks().register("database", new DatabaseHealthCheck());
+		environment.healthChecks().register("TeamHealthCheck", new TeamHealthCheck(client));
 		//environment.jersey().setUrlPattern("/application/*");
 	}
 	

@@ -6,6 +6,21 @@
 </p>
 <hr> <!-- hr equals horizontal line -->
 <p>
-<a class="btn btn-primary" href="#/teams/new"><span class="glyphicon glyphicon-plus"></span>  Create Match</a>
+<button class="btn btn-primary" href="#/new"><span class="glyphicon glyphicon-plus"></span>  Create a new Game</button>
 </p>
+
+<form ng-show="showSave">
+	<div class="row">
+		<!-- col-xs-6 = half of the size (xs for mobile versions) -->
+		<div class="col-xs-6">
+			<label for="date">date</label>
+			<input class="form-control" placeholder="Enter date" type="text" ng-model="game.date" id="date"/>
+			<!-- span here to create a space between the text label and button -->
+			<span class="help-block"></span>
+			
+			<button class="btn btn-primary">Save</button>
+			
+		</div>
+	</div>
+</form>
 </div>

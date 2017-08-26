@@ -12,10 +12,12 @@ import io.dropwizard.db.DataSourceFactory;
 
 public class BTPConfiguration extends Configuration implements AssetsBundleConfiguration {
 	
+	//provides the datasourcefactory instance for a managed connection to the database
 	@Valid
     @NotNull
     private DataSourceFactory database = new DataSourceFactory();
 	
+	//Maps the webpages to the root path
 	@Valid
 	@NotNull
 	@JsonProperty

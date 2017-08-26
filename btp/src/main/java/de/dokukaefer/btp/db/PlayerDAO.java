@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.hibernate.SessionFactory;
 
 import de.dokukaefer.btp.core.Player;
+import de.dokukaefer.btp.core.Team;
 import io.dropwizard.hibernate.AbstractDAO;
 
 public class PlayerDAO extends AbstractDAO<Player>{
@@ -14,8 +15,8 @@ public class PlayerDAO extends AbstractDAO<Player>{
 		super(sessionFactory);
 	}
 
-	public Player findById(Long id) {
-        return get(id);
+	public Optional<Player> findById(Long id) {
+		return Optional.ofNullable(get(id));
     }
 	
 	public Player create(Player player) {

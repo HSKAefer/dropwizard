@@ -1,5 +1,7 @@
 package de.dokukaefer.btp.core;
 
+import java.util.Optional;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +14,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -24,6 +31,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 			)
 		}
 )
+//@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Player {
 
 	@Id
@@ -40,22 +48,26 @@ public class Player {
 	@JsonProperty
 	private String lastname;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "TEAMID")
-	@JsonProperty
+//	@JsonProperty
+//	@JsonBackReference //avoid an infinite loop with jsonbackreference
+//	@JsonManagedReference(value = "team")
+	@JsonSerialize(using = TeamReferenceSerializer.class)
 	private Team team;
 	
 	public Player() {}
 	
 	public Player(String firstname, String lastname) {
-		this.firstname = firstname;
-		this.lastname = lastname;
+		this.firstname = firstname.trim();
+		this.lastname = lastname.trim();
 	}
 
 	//avoid an infinite loop by returning teamname instead of team object
-	public Long getTeam() {
-		return team.getId();
-	}
+	public Team getTeam() {
+		
+		return team;
+	}	
 	
 	public void setTeam(Team team) {
 		this.team = team;
@@ -70,11 +82,11 @@ public class Player {
 	}
 
 	public String getFirstname() {
-		return firstname;
+		return firstname.trim();
 	}
 
 	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+		this.firstname = firstname.trim();
 	}
 
 	public String getLastname() {

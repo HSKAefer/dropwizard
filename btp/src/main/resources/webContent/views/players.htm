@@ -1,9 +1,9 @@
-<a class="btn btn-primary pull-right" href="#/teams/new"><span class="glyphicon glyphicon-plus"></span>  Add Player</a>
+<a class="btn btn-primary pull-right" href="#/players/new"><span class="glyphicon glyphicon-plus"></span>  Add Player</a>
 
 <table class="table">
 	<thead>
 		<tr>
-			<th>Player ID</th><th>Firstname</th><th>Lastname</th><th>Team ID</th>
+			<th>Player ID</th><th>Firstname</th><th>Lastname</th><th>Current Team</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -11,7 +11,7 @@
 			<td>{{player.id}}</td>
 			<td>{{player.firstname}}</td>
 			<td>{{player.lastname}}</td>
-			<td>{{player.team}}</td>
+			<td>{{player.team.teamname}}</td>
 		</tr>
 	</tbody>
 </table>

@@ -43,7 +43,11 @@
 			<input class="form-control" placeholder="Enter Team Name" type="text" ng-model="team.teamname" id="teamname"/>
 			<!-- span here to create a space between the text label and button -->
 			<span class="help-block"></span>
-			<button type="submit" ng-show="showSave" id="save" class="btn btn-primary">Save</button>
+			
+			<!-- swap between save and update -->
+			<button ng-show="showSave" id="save" class="btn btn-primary">Save</button>
+			<button ng-hide="showSave" id="update" class="btn btn-primary">Update</button>
+			
 		</div>
 	</div>
 </form> 

@@ -11,6 +11,13 @@
 		<tr ng-repeat="team in teams">
 			<td>{{team.id}}</td>
 			<td>{{team.teamname}}</td>
+			<td>
+				<!-- beide buttons links ausgerichtet btn-info color hellblue, btn-danger color red -->
+				<div class="pull-right">
+					<a class="btn btn-info" href="#/teams/{{team.id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+				 	<a class="btn btn-danger" ng-click="deleteTeam(team)"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+				</div>
+			</td>
 		</tr>
 	</tbody>
 </table>

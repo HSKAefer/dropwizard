@@ -1,10 +1,27 @@
+# for the complete configuration manual see:
+# http://www.dropwizard.io/1.1.2/docs/manual/configuration.html#logging
+
+# database information
+# ___________________________________________________________________________________________
 database:
   driverClass: org.h2.Driver
   user: sa
   password: sa
   # jdbc:h2:mem:btp - mem for in memory database otherwise it will be an embedded database file located at the url
+  # url: jdbc:h2:mem:testdb
   url: jdbc:h2:./target/btp
+  properties:
+    hibernate.dialect: org.hibernate.dialect.H2Dialect
+    # hibernate.generate_statistics: true
+    # hibernate.show_sql: true
+    # hibernate.format_sql: true
+    # if hbm2.ddl.auto is disabled one should use the migrations.xml file.
+    # to run this file use java -jar target/matchmaking.java db migrate config.yml (hint: does not work with the in memory h2)
+    hibernate.hbm2ddl.auto: update
+    # hibernate.hbm2ddl.auto: create
 
+# server information
+# ___________________________________________________________________________________________  
 server: 
   adminContextPath: /
   applicationContextPath: / 
@@ -15,26 +32,43 @@ server:
     - type: http
       port: 8081
   rootPath: /api/ # the application path is moved to a sub-url so that an webpage (asset) can be served via the root
-  
+  maxThreads: 1024
 
+# Logging informatio
+# ___________________________________________________________________________________________  
+# 
+# Basic slf4j implementation is logback. 
+# see: https://logback.qos.ch/manual/layouts.html#conversionWord
+# The logging settings
 logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
   level: INFO
   
+  # Logger-specific levels.
   loggers:
     org.hibernate.SQL:
-      level: DEBUG
-    
+      # level: DEBUG
+        level: ALL
+      # additive: false # prevent from writing to appenders which are hierarchically above
+  # Logback's Time Based Rolling Policy - archivedLogFilenamePattern: /tmp/application-%d{yyyy-MM-dd}.log.gz
+  # Logback's Size and Time Based Rolling Policy -  archivedLogFilenamePattern: /tmp/application-%d{yyyy-MM-dd}-%i.log.gz
+  # Logback's Fixed Window Rolling Policy -  archivedLogFilenamePattern: /tmp/application-%i.log.gz  
   appenders:
      - type: console
      - type: file
-       threshold: INFO
+       threshold: INFO # lowest level of events to print on the console / stored in file ERROR <- only errors will be stored
+       queueSize: 512
        logFormat: "%-6level [%d{HH:mm:ss.SSS}] [%t] %logger{5} - %X{code} %msg %n"
-       currentLogFilename: /tmp/application.log
-       archivedLogFilenamePattern: /tmp/application-%d{yyyy-MM-dd}-%i.log.gz
+       currentLogFilename: ./target/logs/btp.log
+       archive: true
+       archivedLogFilenamePattern: ./target/logs/btp-%d{yyyy-MM-dd}-%i.log.gz
        archivedFileCount: 7
        timeZone: UTC
        maxFileSize: 10MB
 
+# assets information
+# ___________________________________________________________________________________________
 assets: # assets only works if the dependency dropwizard-configurable-assets-bundle is added to the pom
  # mappings:
    # /webContent: / btp.html # mappings equivalent to the ConfiguredAssetsBundle parameter

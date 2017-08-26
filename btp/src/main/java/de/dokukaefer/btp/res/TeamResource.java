@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -27,8 +28,8 @@ import org.slf4j.LoggerFactory;
 import de.dokukaefer.btp.core.Team;
 import de.dokukaefer.btp.db.TeamDAO;
 import io.dropwizard.hibernate.UnitOfWork;
-import io.dropwizard.jersey.params.IntParam;
 import io.dropwizard.jersey.params.LongParam;
+import io.dropwizard.jersey.sessions.Session;
 
 @Path("/teams")
 @Produces(MediaType.APPLICATION_JSON)
@@ -47,9 +48,11 @@ public class TeamResource {
 	@GET
 	@Path("/{teamid}")
     @UnitOfWork
-    public Response getTeam(@PathParam("teamid") Long teamid) {
-		Team teamFound = teamDAO.findById(teamid);
-		return Response.status(Response.Status.OK).entity(teamFound).build();
+    public Response getTeam(@PathParam("teamid") LongParam teamid) {
+//		Team teamFound = teamDAO.findById(teamid);
+		Optional<Team> teamOptional = teamDAO.findById(teamid.get());
+		
+		return Response.status(Response.Status.OK).entity(teamOptional).build();
     }
 
     @GET
@@ -63,52 +66,63 @@ public class TeamResource {
     	}
     }
     
-//    @POST
-//    @UnitOfWork
-//    public Team createTeam(Team team) {
-////    	if (team.getTeamid() != 0) {
-////    		throw new WebApplicationException("the id is not empty", HttpStatus.UNPROCESSABLE_ENTITY_422);
-////    	}
-//    	return teamDAO.create(team);
-//    }
-    
     @POST
     @UnitOfWork
-    public Response createTeam(@Valid Team team) {
-    	Team newteam = teamDAO.create(team);
+    public Response createTeam(@NotNull @Valid Team team) {
+    	if (team.getId() != null) {
+    		LOGGER.error("id field is not empty ");
+    		//die entity hier ist der return value... gibt das object zurück.. eher errorEntity??
+//    		return Response.serverError().status(HttpStatus.UNPROCESSABLE_ENTITY_422).entity(team).build();
+    		throw new WebApplicationException("id field is not empty ", HttpStatus.UNPROCESSABLE_ENTITY_422);
+    	} 
     	
-    	URI uri = UriBuilder.fromResource(TeamResource.class).build(newteam.getId());
+//		this assertion is already covered by the not null annotation
+//    	if (team.getTeamname().isEmpty()) {
+//    		LOGGER.error("teamname is empty for " + team.getId());
+//    		throw new WebApplicationException("teamname is empty ", HttpStatus.UNPROCESSABLE_ENTITY_422);
+//    	}
+    		
+    	Team newteam = teamDAO.create(team);
+    	URI uri = UriBuilder.fromResource(TeamResource.class).build(newteam);
     	LOGGER.info("the response uri is " + uri);
     	
-    	//    	return Response.created(uri).status(Response.Status.CREATED).entity(newteam).build();
-    	return Response.created(uri).build();
-//    	return Response.status(Response.Status.CREATED).entity(newteam).build();
+    	return Response.created(uri).status(Response.Status.CREATED).entity(newteam).build();
     }
     
+    @DELETE
+    @Path("/{teamid}")
+    @UnitOfWork
+    public Response deleteTeam(@PathParam("teamid") LongParam teamid) {
+    	Optional<Team> teamOptional = teamDAO.findById(teamid.get());
+    	
+    	if (!teamOptional.isPresent()) {
+    		throw new WebApplicationException("the id " + teamid + " cannot be found", Status.NOT_FOUND);
+    	}
+    	
+    	teamDAO.delete(teamOptional.get());
+    	return Response.ok("{ \"team successfully deleted\" : \"" + teamOptional.get().getTeamname() + "\" }").build();
+    }
     
-    
-//    @DELETE
-//    @Path("/{teamid}")
-//    @UnitOfWork
-//    public void deleteTeam(@PathParam("teamid") IntParam teamid) {
-//    	Optional<Team> teamOptional = teamDAO.findById(teamid.get());
-//    	if (teamOptional.isPresent()) {
-//    		teamDAO.delete(teamOptional.get());
-//    	} else {
-//    		throw new WebApplicationException("the id " + teamid + " cannot be found", Status.NOT_FOUND);
-//    	}
-//    }
-    
-//    @PUT
-//    @Path("/{teamid}")
-//    @UnitOfWork
-//    public Optional<Team> updateTeam(@PathParam("teamid") IntParam teamid, Team team) {
-////    	if (team.getTeamid() != null) {
-////    		throw new WebApplicationException("the id is not empty", HttpStatus.UNPROCESSABLE_ENTITY_422);
-////    	}
-//    	team.setTeamid(teamid.get());
-//    	teamDAO.update(team);
-//    	return teamDAO.findById(teamid.get());
-//    }
+    @PUT
+    @Path("/{teamid}")
+    @UnitOfWork
+    public Response updateTeam(@PathParam("teamid") LongParam teamid, @Valid @NotNull Team team) {
+
+       	Optional<Team> foundTeam = teamDAO.findById(teamid.get());
+    	if (!foundTeam.isPresent()) {
+    		LOGGER.error("The id " + teamid + " cannot be found");
+    		throw new WebApplicationException("The id " + teamid + " cannot be found", HttpStatus.NOT_FOUND_404);
+    	}
+    	    	
+    	LOGGER.info("team updated successfully");
+    	
+    	//the teamid values needs to be stored and therefore the update should work with it
+    	//the teamname that needs to be changed comes from the team param
+    	foundTeam.get().setTeamname(team.getTeamname());
+    	teamDAO.update(foundTeam.get());
+
+    	URI uri = UriBuilder.fromResource(TeamResource.class).build(foundTeam);
+    	return Response.created(uri).status(Response.Status.OK).entity(foundTeam).build();
+    }
  
 }

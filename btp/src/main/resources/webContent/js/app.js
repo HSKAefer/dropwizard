@@ -1,12 +1,12 @@
-var app = angular.module('btpModul', ['ngRoute', 'ngResource']);
+var app = angular.module('btpModul', ['ngRoute', 'ngResource', 'ngAnimate']);
 
 app.config(function($routeProvider) {
 	$routeProvider
-	.when('/', { templateUrl: '/views/home.htm' })
+	.when('/', { templateUrl: '/views/home.htm', controller: 'GameController' })
 	.when('/teams', { templateUrl: '/views/teams.htm', controller: 'TeamListController' })
 	.when('/teams/:id', { templateUrl: '/views/teams_details.htm', controller: 'TeamDetailController' })
 	.when('/players', { templateUrl: '/views/players.htm', controller: 'PlayerListController' })
-	.when('/matches', { templateUrl: '/views/matches.htm' })
+	.when('/games', { templateUrl: '/views/games.htm', controller: 'GameListController' })
 	.when('/about', { template: 'Informationen ueber die App und den Ersteller' });
 //	.otherwise({ redirectTo: '/' });
 });
@@ -29,6 +29,48 @@ app.factory('Team', function($resource) {
 	return Team;
 });
 
+app.factory('Game', function($resource) {
+	var Game = $resource('/api/games/:id', {id: '@id'});
+	
+	Game.prototype.isNew = function() {
+		return (typeof(this.id) == 'undefined');
+	}
+	
+	return Game;
+});
+
+app.controller({
+	GameListController: function($scope, Game) {
+		$scope.games = Game.query();
+	}
+});
+
+app.controller({
+	GameController: function($scope, $routeParams, $location, Game) {
+		
+		var id = $routeParams.id;
+		
+		if(id == 'new') {
+			$scope.game = new Game();
+			$scope.showSave = true;
+		} else {
+			$scope.showSave = false;
+		}
+		
+//		$scope.save = function() {
+//			if ($scope.team.isNew()) {
+//				$scope.team.$save(function(game, headers) {
+//					var id = location.substring(location.lastIndexOf('/'));
+//					$location.path('/' + id); 
+//				});
+//			} else {
+//				$location.path('/games');
+//			}
+//		};
+	}
+});
+
+
 app.controller({
 	PlayerListController: function($scope, Player) {
 		$scope.players = Player.query();
@@ -39,6 +81,11 @@ app.controller({
 	TeamListController: function($scope, Team) {
 		$scope.teams = Team.query(); //fetch all teams. Isses a GET to /api/teams - $scope.teams is important to iterate thru the teams
 		
+		$scope.deleteTeam = function(team) {
+			team.$delete(function() {
+				$scope.teams.splice($scope.teams.indexOf(team),1);
+			});
+		}
 	}
 });
 
@@ -66,7 +113,7 @@ app.controller({
 				});
 			} else {
 				$scope.team.$update(function() {
-					$location.path('/');					
+					$location.path('/teams');					
 				});
 			}
 		};

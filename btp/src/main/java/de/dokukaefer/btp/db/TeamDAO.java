@@ -16,10 +16,10 @@ public class TeamDAO extends AbstractDAO<Team> {
 		super(factory);
 	}
 	
-	public Team findById(Long id) {
-        return get(id);
+	public Optional<Team> findById(Long id) {
+		return Optional.ofNullable(get(id));
     }
-
+	
     public Team create(Team team) {
         return persist(team);
     }

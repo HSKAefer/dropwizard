@@ -1,0 +1,21 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Game Id</th><th>Date</th><th>Team One</th><th>Team Two</th><th>Result</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="game in games">
+			<td>{{game.id}}</td>
+			<td>{{game.date}}</td>
+		<!-- 
+			TODO hier noch details zeigen
+			<td>
+				beide buttons links ausgerichtet btn-info color hellblue, btn-danger color red
+				<div class="pull-right">
+					<a class="btn btn-info" href="#/teams/{{team.id}}"><span class="glyphicon glyphicon-edit"></span> Show Details</a>
+				</div>
+			</td> -->
+		</tr>
+	</tbody>
+</table>
