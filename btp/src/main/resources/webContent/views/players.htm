@@ -1,6 +1,7 @@
+<!-- class="btn btn-primary" for the left sided button -->
 <a class="btn btn-primary pull-right" href="#/players/new"><span class="glyphicon glyphicon-plus"></span>  Add Player</a>
 
-<table class="table">
+<table class="table table-striped">
 	<thead>
 		<tr>
 			<th>Player ID</th><th>Firstname</th><th>Lastname</th><th>Current Team</th>
@@ -12,6 +13,13 @@
 			<td>{{player.firstname}}</td>
 			<td>{{player.lastname}}</td>
 			<td>{{player.team.teamname}}</td>
+			<td>
+				<!-- beide buttons links ausgerichtet btn-info color hellblue, btn-danger color red -->
+				<div class="pull-right">
+					<a class="btn btn-info" href="#/players/{{player.id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+				 	<a class="btn btn-danger" ng-click="deletePlayer(player)"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+				</div>
+			</td>
 		</tr>
 	</tbody>
 </table>

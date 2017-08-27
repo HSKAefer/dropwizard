@@ -21,7 +21,7 @@ public class TeamReferenceSerializer extends JsonSerializer<Team>{
 	public void serialize(Team team, JsonGenerator jgen, SerializerProvider provider)
 			throws IOException, JsonProcessingException {
 		jgen.writeStartObject();
-//		jgen.writeNumberField("id", team.getId());
+		jgen.writeNumberField("id", team.getId());
 		jgen.writeStringField("teamname", team.getTeamname());
 		jgen.writeEndObject();
 		

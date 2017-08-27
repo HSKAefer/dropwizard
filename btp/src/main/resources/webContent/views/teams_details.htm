@@ -1,46 +1,9 @@
-<!-- <form novalidate class="form-horizontal" ng-submit="save()">
-    <div class="control-group">
-        <label class="control-label" for="teamname">Team Name</label>
-        <div class="controls">
-            <input type="text" ng-model="team.teamname" id="teamname"/>
-        </div>
-    </div>
-    <fieldset>
-        <legend>Author</legend>
-        <div class="control-group">
-            <label class="control-label" for="firstName">First Name</label>
-            <div class="controls">
-                <input type="text" ng-model="book.author.firstName" id="firstName"/>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="lastName">Last Name</label>
-            <div class="controls">
-                <input type="text" ng-model="book.author.lastName" id="lastName"/>
-            </div>
-        </div>
-    </fieldset>
-    
-    <div class="row">
-    	<label class="control-label" for="teamname">Team Name</label>
-    	
-    	
-    <button ng-show="showSave" id="save" class="btn btn-primary">Save</button>
-    </div>
-    
-    <div class="control-group">
-	 do something here to swap between SAVE and UPDATE
-    <button ng-show="showSave" id="save" class="btn btn-primary">Save</button>
-    <button ng-hide="showSave" id="update" class="btn btn-primary">Update</button>
-   </div>
-</form> -->
-
 <form ng-submit="save()">
 	<div class="row">
 		<!-- col-xs-6 = half of the size (xs for mobile versions) -->
 		<div class="col-xs-6">
 			<label for="teamname">Team Name</label>
-			<input class="form-control" placeholder="Enter Team Name" type="text" ng-model="team.teamname" id="teamname"/>
+			<input class="form-control" placeholder="Enter Team Name" type="text" ng-model="team.teamname" id="teamname" required/>
 			<!-- span here to create a space between the text label and button -->
 			<span class="help-block"></span>
 			

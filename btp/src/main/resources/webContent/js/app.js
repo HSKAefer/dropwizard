@@ -6,22 +6,30 @@ app.config(function($routeProvider) {
 	.when('/teams', { templateUrl: '/views/teams.htm', controller: 'TeamListController' })
 	.when('/teams/:id', { templateUrl: '/views/teams_details.htm', controller: 'TeamDetailController' })
 	.when('/players', { templateUrl: '/views/players.htm', controller: 'PlayerListController' })
+	.when('/players/:id', { templateUrl: '/views/players_details.htm', controller: 'PlayerDetailController' })
 	.when('/games', { templateUrl: '/views/games.htm', controller: 'GameListController' })
 	.when('/about', { template: 'Informationen ueber die App und den Ersteller' });
 //	.otherwise({ redirectTo: '/' });
 });
 
 app.factory('Player', function($resource) {
-	var Player = $resource('/api/players/:id');
+	var Player = $resource('/api/players/:id',
+			{id: '@id'},
+			{update: {method: 'PUT'}});
+	
+			Player.prototype.isNew = function() {
+				return (typeof(this.id) === 'undefined');
+			}
 	return Player;
 });
+
 
 app.factory('Team', function($resource) {
 	var Team = $resource('/api/teams/:id',
 			{id: '@id'},
 			{update: {method: 'PUT'}}); 
 			
-			//define function Team.xxx.isNew is required for the save action. see line number 58!
+			//define function Team.xxx.isNew is required for the save action. see line number ...!
 			Team.prototype.isNew = function() {
 				return (typeof(this.id) === 'undefined');
 			}
@@ -29,11 +37,17 @@ app.factory('Team', function($resource) {
 	return Team;
 });
 
+
+
+
+
+
+
 app.factory('Game', function($resource) {
 	var Game = $resource('/api/games/:id', {id: '@id'});
 	
 	Game.prototype.isNew = function() {
-		return (typeof(this.id) == 'undefined');
+		return (typeof(this.id) === 'undefined');
 	}
 	
 	return Game;
@@ -70,12 +84,6 @@ app.controller({
 	}
 });
 
-
-app.controller({
-	PlayerListController: function($scope, Player) {
-		$scope.players = Player.query();
-	}
-});
 
 app.controller({
 	TeamListController: function($scope, Team) {
@@ -120,6 +128,55 @@ app.controller({
 	}
 });
 
+
+app.controller({
+	PlayerListController: function($scope, Player) {
+		$scope.players = Player.query();
+		
+		$scope.deletePlayer = function(player) {
+			player.$delete(function() {
+				$scope.players.splice($scope.players.indexOf(player),1);
+			});
+		}
+	}
+});
+
+app.controller({
+	PlayerDetailController: function($scope, $routeParams, $location, Player) {
+		var id = $routeParams.id;
+		
+		if (id == 'new') {
+			$scope.player = new Player();
+			$scope.showSave = true;
+		} else {
+			$scope.player = Player.get({id: id});
+			$scope.showSave = false;
+		}
+		
+		$scope.save = function() {
+			if ($scope.player.isNew()) {
+				$scope.player.$save(function(player, headers) {
+					var location = headers('Location');
+					var id = location.substring(location.lastIndexOf('/') + 1);
+					//$location.path() gets the curent url path. $location.path(/value) changes the path 
+					// see: https://docs.angularjs.org/guide/$location
+					$location.path('/' + id); 
+				});
+			} else {
+				
+					$scope.player.$update(function() {
+						$location.path('/players');					
+					});
+				
+			}
+		};
+	}
+});
+
+//for the dropdownmenu for players to select a suitable team
+app.controller('selection', function($scope, Team) {
+	$scope.teams = Team.query();
+});
 
 // workaround for the new angularjs 1.6.5 version. where hash-baning (#!) replaced #
 // -,- grml bullshit - alternatively use the exclamation mark on the server side urls -> <a href="#!/teams">..

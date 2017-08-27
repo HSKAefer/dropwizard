@@ -49,7 +49,7 @@ public class Team {
 //	@NotEmpty //ensure that the name is not null or blank
 	private String teamname;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "team", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "team", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	@JsonProperty
 	private List<Player> players;
 	
@@ -84,15 +84,15 @@ public class Team {
 		this.games = games;
 	}
 
-	public void addPlayer(Player player) {
-		players.add(player);
-		player.setTeam(this);
-	}
-	
-	public void removePlayer(Player player) {
-		players.remove(player);
-		player.setTeam(null);
-	}
+//	public void addPlayer(Player player) {
+//		players.add(player);
+//		player.setTeam(this);
+//	}
+//	
+//	public void removePlayer(Player player) {
+//		players.remove(player);
+//		player.setTeam(null);
+//	}
 	
 	public Long getId() {
 		return id;

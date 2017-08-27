@@ -53,13 +53,13 @@ public class Game {
 	inverseJoinColumns = @JoinColumn(name = "TEAM_ID", referencedColumnName="ID"))
 	private Set<Team> teams;
 
-	public void addTeam(Team team) {
-		teams.add(team);
-	}
-	
-	public void removeTeam(Team team) {
-        teams.remove(team);
-    }
+//	public void addTeam(Team team) {
+//		teams.add(team);
+//	}
+//	
+//	public void removeTeam(Team team) {
+//        teams.remove(team);
+//    }
 	
 	public Game() {
 		

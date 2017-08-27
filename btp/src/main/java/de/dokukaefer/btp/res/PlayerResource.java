@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
@@ -18,6 +19,7 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.Response.Status;
 
 import org.eclipse.jetty.http.HttpStatus;
 import org.slf4j.Logger;
@@ -66,7 +68,7 @@ public class PlayerResource {
     
     @POST
     @UnitOfWork
-    public Response createPlayer(@NotNull @Valid Player player) {
+    public Response createPlayer (Player player) { //(@NotNull @Valid Player player) {
     	if (player.getId() != null) {
     		LOGGER.error("id field is not empty ");
     		throw new WebApplicationException("id field is not empty ", HttpStatus.UNPROCESSABLE_ENTITY_422);
@@ -82,7 +84,7 @@ public class PlayerResource {
     @PUT
     @Path("/{playerid}")
     @UnitOfWork
-    public Response updatePlayer(@PathParam("playerid") LongParam playerid, @Valid @NotNull Player player) {
+    public Response updatePlayer(@PathParam("playerid") LongParam playerid, Player player) { //@Valid @NotNull Player player) {
 
        	Optional<Player> foundPlayer = playerDAO.findById(playerid.get());
     	if (!foundPlayer.isPresent()) {
@@ -96,10 +98,28 @@ public class PlayerResource {
     	//the teamname that needs to be changed comes from the team param
     	foundPlayer.get().setFirstname(player.getFirstname());
     	foundPlayer.get().setLastname(player.getLastname());
+    	foundPlayer.get().setTeam(player.getTeam());
+
     	playerDAO.update(foundPlayer.get());
 
     	URI uri = UriBuilder.fromResource(TeamResource.class).build(foundPlayer);
     	return Response.created(uri).status(Response.Status.OK).entity(foundPlayer).build();
+    }
+    
+    @DELETE
+    @Path("/{playerid}")
+    @UnitOfWork
+    public Response deleteTeam(@PathParam("playerid") LongParam playerid) {
+    	Optional<Player> playerOptional = playerDAO.findById(playerid.get());
+    	
+    	if (!playerOptional.isPresent()) {
+    		throw new WebApplicationException("the id " + playerid + " cannot be found", Status.NOT_FOUND);
+    	}
+    	
+    	playerDAO.delete(playerOptional.get());
+    	
+    	return Response.ok("{ \"team successfully deleted\" : \"" + playerOptional.get().getFirstname() + " " 
+    																+ playerOptional.get().getLastname() + "\" }").build();
     }
     
 }

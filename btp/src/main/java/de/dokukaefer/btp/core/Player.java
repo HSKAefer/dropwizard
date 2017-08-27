@@ -2,6 +2,7 @@ package de.dokukaefer.btp.core;
 
 import java.util.Optional;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,14 +42,12 @@ public class Player {
     private Long id;
 	
 	@Column(name = "FIRSTNAME")
-	@JsonProperty
 	private String firstname;
 	
 	@Column(name = "LASTNAME")
-	@JsonProperty
 	private String lastname;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "TEAMID")
 //	@JsonProperty
 //	@JsonBackReference //avoid an infinite loop with jsonbackreference
@@ -65,7 +64,6 @@ public class Player {
 
 	//avoid an infinite loop by returning teamname instead of team object
 	public Team getTeam() {
-		
 		return team;
 	}	
 	

@@ -100,6 +100,7 @@ public class TeamResource {
     	}
     	
     	teamDAO.delete(teamOptional.get());
+    	
     	return Response.ok("{ \"team successfully deleted\" : \"" + teamOptional.get().getTeamname() + "\" }").build();
     }
     

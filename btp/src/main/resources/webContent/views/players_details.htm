@@ -1,0 +1,36 @@
+<form ng-submit="save()">
+	<div class="row">
+		<!-- col-xs-6 = half of the size (xs for mobile versions) -->
+		<div class="col-xs-6" ng-controller="selection">
+			<label for="firstname">Firstname</label>
+			<input class="form-control" placeholder="Enter Firstname" type="text" ng-model="player.firstname" id="firstname" required/>
+			<span class="help-block"></span>
+			
+			<label for="lastname">Lastname</label>
+			<input class="form-control" placeholder="Enter Lastname" type="text" ng-model="player.lastname" id="lastname" required/>
+			<span class="help-block"></span>
+			
+			<!-- old version without dropdown menu  -->
+			<!-- <input class="form-control" placeholder="Enter Current Team" type="text" ng-model="player.team.id" id="teamid"/> -->
+			
+			<!-- track by team.id is necesarry when editing the values again. The current team for a player will be selected as default -->
+			<!-- see: select as and track by https://docs.angularjs.org/api/ng/directive/ngOptions -->
+			<label for="teamid">Current Team</label>
+			<select class="form-control" ng-options="team.teamname for team in teams track by team.id" ng-model="player.team">
+				
+				<!-- with additional option value the selection is extended to null or all -->
+				<option value="" selected>-- No Team --</option>
+			</select>
+			<span class="help-block"></span>
+			
+			
+			<!-- span here to create a space between the text label and button -->
+			<span class="help-block"></span>
+			
+			<!-- swap between save and update -->
+			<button ng-show="showSave" id="save" class="btn btn-primary">Save</button>
+			<button ng-hide="showSave" id="update" class="btn btn-primary">Update</button>
+			
+		</div>
+	</div>
+</form> 
