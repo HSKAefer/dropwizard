@@ -1,26 +1,19 @@
 <!-- col-sm-12 the whole container size -->
 <div class="col-sm-12 text-left">
-<p>
-<h1>Welcome</h1>
-<p>Hello and welcome to the BTP system. Lets try and start a new match! Good luck and have fun. Any suggestions? Feel free to contact me.
-</p>
-<hr> <!-- hr equals horizontal line -->
-<p>
-<button class="btn btn-primary" href="#/new"><span class="glyphicon glyphicon-plus"></span>  Create a new Game</button>
-</p>
 
-<form ng-show="showSave">
-	<div class="row">
-		<!-- col-xs-6 = half of the size (xs for mobile versions) -->
-		<div class="col-xs-6">
-			<label for="date">date</label>
-			<input class="form-control" placeholder="Enter date" type="text" ng-model="game.date" id="date"/>
-			<!-- span here to create a space between the text label and button -->
-			<span class="help-block"></span>
-			
-			<button class="btn btn-primary">Save</button>
-			
-		</div>
-	</div>
-</form>
+<div id="collapseTextInner" class="collapse in">
+	<p>
+	<h3>Welcome</h3>
+	<p>Hello and welcome to the BTP system. Lets try and start a new match! Good luck and have fun. Any suggestions? Feel free to contact me.
+	</p>
+	<hr> <!-- hr equals horizontal line -->
+<p>
+ </div>
+ <!--<button class="btn btn-primary" ng-click="$location.path('#/current_game/new')" data-toggle="collapse" data-target="#collapseTextInner, #collapseGameFormular"><span class="glyphicon glyphicon-plus"></span>  Create a new Game</button>
+-->
+  <a class="btn btn-primary" href="#/games/new"><span class="glyphicon glyphicon-plus"></span>  Create a new Game</a>
+ </p>
+
+
+
 </div>

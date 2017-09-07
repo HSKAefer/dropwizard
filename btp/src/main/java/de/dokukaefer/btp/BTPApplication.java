@@ -3,10 +3,13 @@ package de.dokukaefer.btp;
 import javax.ws.rs.client.Client;
 
 import org.glassfish.jersey.client.JerseyClientBuilder;
-
+import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.dokukaefer.btp.auth.CustomAuthenticator;
+import de.dokukaefer.btp.auth.CustomAuthorizer;
+import de.dokukaefer.btp.auth.User;
 import de.dokukaefer.btp.core.Game;
 import de.dokukaefer.btp.core.Player;
 import de.dokukaefer.btp.core.Team;
@@ -19,9 +22,13 @@ import de.dokukaefer.btp.res.GameResource;
 import de.dokukaefer.btp.res.PlayerResource;
 import de.dokukaefer.btp.res.TeamResource;
 import io.dropwizard.Application;
+import io.dropwizard.auth.AuthDynamicFeature;
+import io.dropwizard.auth.AuthValueFactoryProvider;
+import io.dropwizard.auth.basic.BasicCredentialAuthFilter;
 import io.dropwizard.bundles.assets.ConfiguredAssetsBundle;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
+import io.dropwizard.hibernate.ScanningHibernateBundle;
 import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -34,14 +41,24 @@ public class BTPApplication extends Application<BTPConfiguration>{
 		new BTPApplication().run(args);
 	}
 	
-	private final HibernateBundle<BTPConfiguration> hibernateBundle =
-	        new HibernateBundle<BTPConfiguration>(Game.class, Team.class, Player.class) {
-	            @Override
-	            public DataSourceFactory getDataSourceFactory(BTPConfiguration configuration) {
-	                return configuration.getDataSourceFactory();
-	            }
-	        };
+	//enter the entity classes directly 
+	private final HibernateBundle<BTPConfiguration> hibernateBundle = new HibernateBundle<BTPConfiguration>(Game.class,
+			Team.class, Player.class) {
+		@Override
+		public DataSourceFactory getDataSourceFactory(BTPConfiguration configuration) {
+			return configuration.getDataSourceFactory();
+		}
+	};
 	
+	//package scanning classes..
+//	private final ScanningHibernateBundle<BTPConfiguration> hibernateBundle = new ScanningHibernateBundle<BTPConfiguration>(
+//			"de.dokukaefer.btp.core") {
+//		@Override
+//		public DataSourceFactory getDataSourceFactory(BTPConfiguration configuration) {
+//			return configuration.getDataSourceFactory();
+//		}
+//	};       
+	        
     @Override
     public String getName() {
     	return "Badminton Tournament Platform";
@@ -89,6 +106,20 @@ public class BTPApplication extends Application<BTPConfiguration>{
 //		environment.healthChecks().register("database", new DatabaseHealthCheck());
 		environment.healthChecks().register("TeamHealthCheck", new TeamHealthCheck(client));
 		//environment.jersey().setUrlPattern("/application/*");
+	
+	
+		//testing the authentication and authorization
+		//see resources file for more information
+		environment.jersey().register(new AuthDynamicFeature(
+				new BasicCredentialAuthFilter.Builder<User>()
+				.setAuthenticator(new CustomAuthenticator())
+				.setAuthorizer(new CustomAuthorizer())
+				.setRealm("ADMIN ZONE")
+				.buildAuthFilter()));
+		environment.jersey().register(RolesAllowedDynamicFeature.class);
+		environment.jersey().register(new AuthValueFactoryProvider.Binder(User.class));
+	
+		
 	}
 	
 	

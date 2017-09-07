@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
@@ -25,8 +27,10 @@ import org.eclipse.jetty.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.dokukaefer.btp.auth.User;
 import de.dokukaefer.btp.core.Team;
 import de.dokukaefer.btp.db.TeamDAO;
+import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
 import io.dropwizard.jersey.sessions.Session;
@@ -45,9 +49,13 @@ public class TeamResource {
 		this.teamDAO = teamDAO;
 	}
 
+	//security restrictions for the resources
+	//following roles are allowed: rolesallowed, permitall and denyall
+	//see: https://spin.atomicobject.com/2016/07/26/dropwizard-dive-part-1/
 	@GET
 	@Path("/{teamid}")
     @UnitOfWork
+//    @PermitAll
     public Response getTeam(@PathParam("teamid") LongParam teamid) {
 //		Team teamFound = teamDAO.findById(teamid);
 		Optional<Team> teamOptional = teamDAO.findById(teamid.get());
@@ -57,7 +65,8 @@ public class TeamResource {
 
     @GET
     @UnitOfWork
-    public Response getAllTeams() {
+//    @PermitAll
+    public Response getAllTeams() { //(@Auth User user) {
     	if (teamDAO.findAll().isEmpty()) {
     		throw new NotFoundException("No team is available");
     	} else {
@@ -68,6 +77,9 @@ public class TeamResource {
     
     @POST
     @UnitOfWork
+    //permitall works with the given credentionals .. for the roles allowed like the name mentioned, the roles are required
+//    @PermitAll
+//  @RolesAllowed({"ADMIN"})
     public Response createTeam(@NotNull @Valid Team team) {
     	if (team.getId() != null) {
     		LOGGER.error("id field is not empty ");
@@ -92,6 +104,7 @@ public class TeamResource {
     @DELETE
     @Path("/{teamid}")
     @UnitOfWork
+//    @RolesAllowed({"ADMIN"})
     public Response deleteTeam(@PathParam("teamid") LongParam teamid) {
     	Optional<Team> teamOptional = teamDAO.findById(teamid.get());
     	
@@ -107,6 +120,7 @@ public class TeamResource {
     @PUT
     @Path("/{teamid}")
     @UnitOfWork
+//    @RolesAllowed({"ADMIN"})
     public Response updateTeam(@PathParam("teamid") LongParam teamid, @Valid @NotNull Team team) {
 
        	Optional<Team> foundTeam = teamDAO.findById(teamid.get());

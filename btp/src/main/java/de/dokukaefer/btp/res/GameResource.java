@@ -64,10 +64,10 @@ public class GameResource {
     
     @POST
     @UnitOfWork
-    public Response createGame(@NotNull @Valid Game game) {
+    public Response createGame(Game game) { //(@NotNull @Valid Game game) {
     	if (game.getId() != null) {
     		LOGGER.error("id field is not empty ");
-    		throw new WebApplicationException("id field is not empty ", HttpStatus.UNPROCESSABLE_ENTITY_422);
+    		throw new WebApplicationException("id field is not empty ", HttpStatus.IM_A_TEAPOT_418);
     	} 
     	
     	Game newGame = gameDAO.create(game);
@@ -80,7 +80,7 @@ public class GameResource {
     @PUT
     @Path("/{gameid}")
     @UnitOfWork
-    public Response updateGame(@PathParam("gameid") LongParam gameid, @Valid @NotNull Game game) {
+    public Response updateGame(@PathParam("gameid") LongParam gameid, Game game) {// @Valid @NotNull Game game) {
 
        	Optional<Game> foumdGame = gameDAO.findById(gameid.get());
     	if (!foumdGame.isPresent()) {
@@ -92,6 +92,7 @@ public class GameResource {
     	
 
     	foumdGame.get().setDate(game.getDate());
+    	foumdGame.get().setTeams(game.getTeams());
     	gameDAO.update(foumdGame.get());
 
     	URI uri = UriBuilder.fromResource(GameResource.class).build(foumdGame);

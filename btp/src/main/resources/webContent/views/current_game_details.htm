@@ -1,4 +1,5 @@
-<div class="col-sm-12 text-left" ng-controller="selectionTwo">
+<div class="col-sm-12 text-left">
+<div class="collapse" id="collapseGameFormular">
 <form ng-submit="save()">
 	<div class="row">
 		<!-- col-xs-6 = half of the size (xs for mobile versions) -->
@@ -11,17 +12,17 @@
 			<span class="help-block"></span>
 		</div>
 	</div>
-	<div class="row" >
+	<div class="row" ng-controller="selection">
 		<div class="col-xs-6">	
 			<label for="teamOne">Select Team 1</label>
-			<select class="form-control" ng-options="team.id as team.teamname for team in teams track by team.id" ng-model="team[0]">
-			<option value="" selected>-- No Team --</option></select>
+			<select class="form-control" ng-options="team.teamname for team in teams track by team.id" ng-model="game.teams" ng-init="game.teams=teams[0].teamname"></select>
+			<!--  <option value="" disabled>-- No Team --</option>-->
 			<span class="help-block"></span>
 		</div>
 		<div class="col-xs-6">
 			<label for="teamTwo">Select Team 2</label>
-			<select class="form-control" ng-options="team.id as team.teamname for team in teams track by team.id" ng-model="team[1]">
-			<option value="" selected>-- No Team --</option></select>
+			<select class="form-control" ng-options="team.teamname for team in teams track by team.id" ng-model="game.teams" ng-init="game.teams=teams[1].teamname"></select>
+			<!-- <option value="" selected>-- No Team --</option>-->
 			<span class="help-block"></span>
 		</div>
 	</div>
@@ -34,4 +35,5 @@
 	</div>		
 	
 </form> 
+</div>
 </div>

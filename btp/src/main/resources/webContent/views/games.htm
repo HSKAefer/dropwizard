@@ -1,13 +1,24 @@
+<a class="btn btn-primary pull-right" href="#/games/new"><span class="glyphicon glyphicon-plus"></span>  Create a new Game</a>
+
+
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th>Game Id</th><th>Date</th><th>Team One</th><th>Team Two</th><th>Result</th>
+			<th>Game Id</th><th>Date</th><th>Team One</th><th>Team Two</th><th>Result</th><th></th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="game in games">
 			<td>{{game.id}}</td>
 			<td>{{game.date}}</td>
+			<td>{{game.teams}}</td>
+			<td>{{game.teams}}</td>
+			<!-- <td><div ng-repeat="team in games">{{team[0].teamname}}</div></td>
+			<td><div ng-repeat="team in games">{{team[1].teamname}}</div></td> -->
+			
+			<!-- <td>{{game.teams}}</td>
+			<td>{{game.teams}}</td> -->
+			<td>3:2</td>
 		<!-- 
 			TODO hier noch details zeigen
 			<td>
