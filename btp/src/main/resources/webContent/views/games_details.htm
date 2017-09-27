@@ -1,8 +1,8 @@
-<div class="col-sm-12 text-left" ng-controller="selectionTwo">
+<div class="col-sm-12 text-left">
 <form ng-submit="save()">
 	<div class="row">
 		<!-- col-xs-6 = half of the size (xs for mobile versions) -->
-		<div class="col-xs-6" >
+		<div class="col-xs-6">
 			<p>
 				<h3>Create a new Game</h3>
 			</p>
@@ -13,15 +13,18 @@
 	</div>
 	<div class="row" >
 		<div class="col-xs-6">	
-			<label for="teamOne">Select Team 1</label>
-			<select class="form-control" ng-options="team.id as team.teamname for team in teams track by team.id" ng-model="team[0]">
-			<option value="" selected>-- No Team --</option></select>
+			<label for="teamOne">Select Team One</label>
+			<select class="form-control" ng-options="team.teamname for team in teams" ng-model="game.teams[0]">
+		 		<option value="" selected>-- No Team --</option>
+		 	</select>
+			
 			<span class="help-block"></span>
 		</div>
 		<div class="col-xs-6">
-			<label for="teamTwo">Select Team 2</label>
-			<select class="form-control" ng-options="team.id as team.teamname for team in teams track by team.id" ng-model="team[1]">
-			<option value="" selected>-- No Team --</option></select>
+			<label for="teamTwo">Select Team Two</label>
+			<select class="form-control" ng-options="team.teamname for team in teams" ng-model="game.teams[1]">
+				<option value="" selected>-- No Team --</option></select>
+
 			<span class="help-block"></span>
 		</div>
 	</div>

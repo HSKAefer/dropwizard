@@ -15,6 +15,8 @@ app.config(function($routeProvider) {
 //	.otherwise({ redirectTo: '/' });
 });
 
+
+
 app.factory('Player', function($resource) {
 	var Player = $resource('/api/players/:id',  //resource needs the full endpoint path
 			{id: '@id'},
@@ -29,7 +31,7 @@ app.factory('Player', function($resource) {
 });
 
 
-app.factory('Team', function($resource) {
+app.factory("Team", function($resource) {
 	var Team = $resource('/api/teams/:id',
 			{id: '@id'},
 			{update: {method: 'PUT'}},
@@ -45,55 +47,65 @@ app.factory('Team', function($resource) {
 });
 
 
-app.factory('Game', function($resource) {
-	console.log("wann komm ich in die factory von game rein? ");
+app.factory("Game", function($resource) {
 	var Game = $resource('/api/games/:id', 
 			{id: '@id'},
-			{update: {method: 'PUT'}});
-//			{query: {method: 'GET', isArray: true}});
+			{update: {method: 'PUT'}},
+			{},
+			{query: {method: 'GET', isArray: true}});
 	
 	Game.prototype.isNew = function() {
 		return (typeof(this.id) === 'undefined');
 	}
-	
-	console.log("und wieder raus");
+
 	return Game;
 });
 
 app.controller({
 	GameListController: function($scope, Game) {
 		$scope.games = Game.query();
-		console.log("gib mir alle games aus");
 	}
 });
 
-app.controller({
-	GameDetailController: function($scope, $routeParams, $location, Game) {
-		console.log("in die funktion");
+//app.service("sharetheteams", function(Team) {
+//	var shareteams = Team.query();
+//	
+//	return { 
+//	  	getSharedTeams: function() { 
+//	    	return shareteams; 
+//	 		},
+//	  	setSharedTeams: function(value) {
+//	    	shareteams = value;
+//	    }
+//	 };
+//});
+
+app.controller(
+	"GameDetailController", function($scope, $routeParams, $location, Game, Team) {
 		var id = $routeParams.id;
 		
-		
 		if(id == 'new') {
-			console.log("im new zweig von if");
 			$scope.game = new Game();
-			$scope.showSave = true;
-			console.log("inhalt von scope.game" + $scope.game);	
+			$scope.teams = Team.query();
+			$scope.game.teams = [];
+			$scope.showSave = true;	
+			console.log("Game.query() = " + Game.query());
+			console.log("Team.query() = " + Team.query());
+			console.log("inhalt von scope.game.teams = [] ist : " + $scope.game.teams);
 		} else {
-			console.log("im else zweig von new");
-//			$scope.game = Game.get({id: id});
-			$scope.game = Game.query();
+			$scope.game = Game.get({id: id});
 			$scope.showSave = false;
 		}
 		
-		
-		
 		$scope.save = function() {
-			console.log("save button gedrückt");
 			if ($scope.game.isNew()) {
 				$scope.game.$save(function(game, headers) {
 					var location = headers('Location');
 					var id = location.substring(location.lastIndexOf('/') + 1);
-					$location.path('/' + id); 
+					$location.path('/' + id);
+					console.log("Game.query() = " + Game.query());
+					console.log("Team.query() = " + Team.query());
+					console.log("inhalt von scope.game.teams = [] ist : " + $scope.game.teams);
 				});
 			} else {
 				$scope.game.$update(function() {
@@ -102,7 +114,7 @@ app.controller({
 			}
 		};
 	}
-});
+);
 
 
 app.controller({
@@ -117,9 +129,9 @@ app.controller({
 	}
 });
 
-app.controller({
+app.controller(
 	//$location parses the URL in the browser address bar and makes it available in the application
-	TeamDetailController: function($scope, $routeParams, $location, Team) {
+	"TeamDetailController", function($scope, $routeParams, $location, Team) {
 		var id = $routeParams.id;
 		
 		if (id == 'new') {
@@ -146,7 +158,7 @@ app.controller({
 			}
 		};
 	}
-});
+);
 
 
 app.controller({
@@ -194,46 +206,46 @@ app.controller({
 	}
 });
 
-//for the dropdownmenu for players to select a suitable team
-app.controller("selection", function($scope, Team) {
-	$scope.teams = Team.query();
-});
-
-app.controller('doit', function($scope, Player, Team) {
-	$scope.players = Player.query(function() {
-		console.log("$scope.players =" + $scope.players);
-	});
-	$scope.teams = Team.query(function() {
-		console.log("$scope.teams =" + $scope.teams);
-	});
-	
-	$scope.getPlayers = function(id) {
-		console.log("länge der player =" + $scope.players.length);
-		console.log("spieler =" + $scope.players);
-		for (var i = 0; i < $scope.players.length; i++) {
-			console.log("aktueller spieler =" + $scope.players[i].firstname);
-			console.log("$scope.players.firstname =" + $scope.players.firstname);
-			console.log("$scope.players =" + $scope.players);
-			
-			if ($scope.players[i].team.id === id) {
-				return $scope.players[i].firstname;
-			}
-		};
-	};
-});
-
-
-
-app.controller("selectionTwo", function($scope, Game, Team) {
-	console.log("in the selectiontwo controller: ");
+//for the dropdownmenu for players to select a suitale team
+app.controller("selection", function($scope, Team, Game) {
+	$scope.teams = [];
+	$scope.games = [];
 	$scope.teams = Team.query();
 	$scope.games = Game.query();
-	console.log($scope.game);
+});
 
+app.controller("selectionGame", function($scope, Game, Team) {
+	$scope.teams = Team.query();
+	$scope.game.teams = [];
+	$scope.game.teams = Team.query();
+	$scope.games = Game.query();
 });
 
 
 
+
+//app.controller('doit', function($scope, Player, Team) {
+//	$scope.players = Player.query(function() {
+//		console.log("$scope.players =" + $scope.players);
+//	});
+//	$scope.teams = Team.query(function() {
+//		console.log("$scope.teams =" + $scope.teams);
+//	});
+//	
+//	$scope.getPlayers = function(id) {
+//		console.log("länge der player =" + $scope.players.length);
+//		console.log("spieler =" + $scope.players);
+//		for (var i = 0; i < $scope.players.length; i++) {
+//			console.log("aktueller spieler =" + $scope.players[i].firstname);
+//			console.log("$scope.players.firstname =" + $scope.players.firstname);
+//			console.log("$scope.players =" + $scope.players);
+//			
+//			if ($scope.players[i].team.id === id) {
+//				return $scope.players[i].firstname;
+//			}
+//		};
+//	};
+//});
 
 // workaround for the new angularjs 1.6.5 version. where hash-baning (#!) replaced #
 // -,- grml bullshit - alternatively use the exclamation mark on the server side urls -> <a href="#!/teams">..
