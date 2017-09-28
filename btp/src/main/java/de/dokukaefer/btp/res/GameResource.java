@@ -82,8 +82,8 @@ public class GameResource {
     @UnitOfWork
     public Response updateGame(@PathParam("gameid") LongParam gameid, Game game) {// @Valid @NotNull Game game) {
 
-       	Optional<Game> foumdGame = gameDAO.findById(gameid.get());
-    	if (!foumdGame.isPresent()) {
+       	Optional<Game> foundGame = gameDAO.findById(gameid.get());
+    	if (!foundGame.isPresent()) {
     		LOGGER.error("The id " + gameid + " cannot be found");
     		throw new WebApplicationException("The id " + gameid + " cannot be found", HttpStatus.NOT_FOUND_404);
     	}
@@ -91,12 +91,12 @@ public class GameResource {
     	LOGGER.info("game updated successfully");
     	
 
-    	foumdGame.get().setDate(game.getDate());
-    	foumdGame.get().setTeams(game.getTeams());
-    	gameDAO.update(foumdGame.get());
+    	foundGame.get().setDate(game.getDate());
+    	foundGame.get().setTeams(game.getTeams());
+    	gameDAO.update(foundGame.get());
 
-    	URI uri = UriBuilder.fromResource(GameResource.class).build(foumdGame);
-    	return Response.created(uri).status(Response.Status.OK).entity(foumdGame).build();
+    	URI uri = UriBuilder.fromResource(GameResource.class).build(foundGame);
+    	return Response.created(uri).status(Response.Status.OK).entity(foundGame).build();
     }
  
     

@@ -4,14 +4,18 @@
 # database information
 # ___________________________________________________________________________________________
 database:
-  driverClass: org.h2.Driver
-  user: sa
-  password: sa
+  driverClass: org.h2.Driver # org.postgresql.Driver #for postgres
+  user: sa # postgres
+  password: sa # postgres
   # jdbc:h2:mem:btp - mem for in memory database otherwise it will be an embedded database file located at the url
-  # url: jdbc:h2:mem:testdb
+  
+  # url: jdbc:h2:mem:testdb # jdbc:postgresql://localhost:5432/btpdb
   url: jdbc:h2:./target/btp
+  
   properties:
-    hibernate.dialect: org.hibernate.dialect.H2Dialect
+   
+   
+    hibernate.dialect: org.hibernate.dialect.H2Dialect #  hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
     # hibernate.generate_statistics: true
     # hibernate.show_sql: true
     # hibernate.format_sql: true

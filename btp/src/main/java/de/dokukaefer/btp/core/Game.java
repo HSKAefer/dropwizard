@@ -1,5 +1,9 @@
 package de.dokukaefer.btp.core;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -19,11 +23,18 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+
+import org.hibernate.validator.constraints.Length;
+
 import static javax.persistence.TemporalType.DATE;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 
 @Entity
 @Table(name = "GAMES")
@@ -45,7 +56,15 @@ public class Game {
     private Long id;
 	
 	@Column(name = "DATE")
-	private Integer date;
+//	@Temporal(DATE) //temporal only for date or calendar properties
+	//this jsonformat shape needs to be equivalent with the chosen date in the new game date field. 
+	//till now it was not possible to enter the input type="date" in games_details.htm
+	// because one cannot format the date value of the selected one
+	//from yyyy-MM-ddThh:mm:ss:SSSZ to dd.MM.yyyy. So the input type is still text
+	// The new LocalDate and ZonedDate does also not work correctly because they only accept yyyy-MM-dd
+//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+	private Date date;
 	
 	@ManyToMany
 	@JoinTable(name = "GAMES_TEAMS", 
@@ -65,7 +84,7 @@ public class Game {
 		
 	}
 	
-	public Game(Integer date) {
+	public Game(Date date) {
 		this.date = date;
 	}
 	
@@ -77,11 +96,14 @@ public class Game {
 		this.id = id;
 	}
 
-	public Integer getDate() {
+	//with this serializer the date changes from 1506549600000 to 25.09.2013
+//	@JsonSerialize(using = GameDateSerializer.class) //currently not required because the @jsonformat annotation works already
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Integer date) {
+//	@JsonDeserialize(using = GameDateDeserializer.class)
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

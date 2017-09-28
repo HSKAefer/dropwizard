@@ -81,17 +81,27 @@ app.controller({
 //});
 
 app.controller(
-	"GameDetailController", function($scope, $routeParams, $location, Game, Team) {
+	"GameDetailController", function($scope, $filter, $routeParams, $location, Game, Team) {
 		var id = $routeParams.id;
 		
 		if(id == 'new') {
 			$scope.game = new Game();
+			
+//			$scope.data = new Date(Date.now());
+//			$scope.game.date = $filter('date')($scope.data, 'yyyy-MM-dd');
+		
+			
+			
 			$scope.teams = Team.query();
 			$scope.game.teams = [];
+			$scope.game.date = ($filter)('date')(new Date(Date.now()), 'dd.MM.yyyy');
+//			$scope.game.date = new Date(d);
 			$scope.showSave = true;	
+			
 			console.log("Game.query() = " + Game.query());
 			console.log("Team.query() = " + Team.query());
 			console.log("inhalt von scope.game.teams = [] ist : " + $scope.game.teams);
+			console.log("value of date: " + $scope.game.date);
 		} else {
 			$scope.game = Game.get({id: id});
 			$scope.showSave = false;
@@ -99,13 +109,16 @@ app.controller(
 		
 		$scope.save = function() {
 			if ($scope.game.isNew()) {
+				console.log("value of date: " + $scope.game.date);
 				$scope.game.$save(function(game, headers) {
+					console.log("value of date: " + $scope.game.date);
 					var location = headers('Location');
 					var id = location.substring(location.lastIndexOf('/') + 1);
 					$location.path('/' + id);
 					console.log("Game.query() = " + Game.query());
 					console.log("Team.query() = " + Team.query());
 					console.log("inhalt von scope.game.teams = [] ist : " + $scope.game.teams);
+					console.log("value of date: " + $scope.game.date);
 				});
 			} else {
 				$scope.game.$update(function() {

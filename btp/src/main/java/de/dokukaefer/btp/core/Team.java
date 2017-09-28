@@ -55,7 +55,7 @@ public class Team {
 	
 	
 	@ManyToMany(mappedBy = "teams", cascade =  {CascadeType.MERGE, CascadeType.PERSIST})
-	@JsonSerialize(using = GameReferenceSerializer.class)
+	@JsonSerialize(using = GameReferenceSerializer.class) //required to avoid infinite recursion
 	private Set<Game> games;
 	
 	public void addGame(Game game) {

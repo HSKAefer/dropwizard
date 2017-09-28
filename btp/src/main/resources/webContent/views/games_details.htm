@@ -1,5 +1,5 @@
 <div class="col-sm-12 text-left">
-<form ng-submit="save()">
+<form name="valid" ng-submit="save(valid.$valid)">
 	<div class="row">
 		<!-- col-xs-6 = half of the size (xs for mobile versions) -->
 		<div class="col-xs-6">
@@ -24,7 +24,6 @@
 			<label for="teamTwo">Select Team Two</label>
 			<select class="form-control" ng-options="team.teamname for team in teams" ng-model="game.teams[1]">
 				<option value="" selected>-- No Team --</option></select>
-
 			<span class="help-block"></span>
 		</div>
 	</div>
