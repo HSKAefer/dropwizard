@@ -1,8 +1,24 @@
+<div class="row">
+			<div class="col-xs-6">
+				<div class="input-group">
+					<div class="form-control">{{games[games.length - 1].teams[0].teamname}}</div>
+				</div>
+			</div>
+			
+			<div class="col-xs-6">	
+				<div class="input-group text-right">
+					<div class="form-control">{{games[games.length - 1].teams[1].teamname}}</div>
+				</div>
+			</div>
+</div>
+
+<!-- 
+
 <div class="col-sm-12 text-left">
 <div class="collapse" id="collapseGameFormular">
 <form ng-submit="save()">
 	<div class="row">
-		<!-- col-xs-6 = half of the size (xs for mobile versions) -->
+		col-xs-6 = half of the size (xs for mobile versions)
 		<div class="col-xs-6" >
 			<p>
 				<h3>Create a new Game</h3>
@@ -16,19 +32,19 @@
 		<div class="col-xs-6">	
 			<label for="teamOne">Select Team 1</label>
 			<select class="form-control" ng-options="team.teamname for team in teams track by team.id" ng-model="game.teams" ng-init="game.teams=teams[0].teamname"></select>
-			<!--  <option value="" disabled>-- No Team --</option>-->
+			 <option value="" disabled>-- No Team --</option>
 			<span class="help-block"></span>
 		</div>
 		<div class="col-xs-6">
 			<label for="teamTwo">Select Team 2</label>
 			<select class="form-control" ng-options="team.teamname for team in teams track by team.id" ng-model="game.teams" ng-init="game.teams=teams[1].teamname"></select>
-			<!-- <option value="" selected>-- No Team --</option>-->
+			<option value="" selected>-- No Team --</option>
 			<span class="help-block"></span>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-6">	
-			<!-- swap between save and update -->
+			swap between save and update
 			<button ng-show="showSave" id="save" class="btn btn-primary">Save</button>
 			<button ng-hide="showSave" id="update" class="btn btn-primary">Update</button>
 		</div>
@@ -36,4 +52,4 @@
 	
 </form> 
 </div>
-</div>
+</div> -->
