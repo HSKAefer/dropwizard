@@ -3,12 +3,9 @@ Tryout the dropwizard framework
 
 # documentation
 here is some free space to add a documentation of my work
+
 ```java
-...
-  "public class Team {
-    
-  }
-...
+  public class Team { }
 ```
 
 
