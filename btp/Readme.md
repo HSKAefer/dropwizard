@@ -1,6 +1,9 @@
 # Badminton Tournament Platform (BTP)
 Tryout the dropwizard framework
 
+# TODO
+Login Button + Authentication/Authorization
+
 # documentation
 here is some free space to add a documentation of my work
 
