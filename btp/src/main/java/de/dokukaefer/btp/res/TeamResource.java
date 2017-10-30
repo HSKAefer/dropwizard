@@ -18,10 +18,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Link;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
 
 import org.eclipse.jetty.http.HttpStatus;
 import org.slf4j.Logger;
@@ -34,10 +37,13 @@ import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
 import io.dropwizard.jersey.sessions.Session;
+//import io.swagger.annotations.Api;
+import io.swagger.annotations.Api;
 
 @Path("/teams")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Api(value = "Teams")
 public class TeamResource {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(TeamResource.class);
@@ -49,13 +55,14 @@ public class TeamResource {
 		this.teamDAO = teamDAO;
 	}
 
+	  
 	//security restrictions for the resources
 	//following roles are allowed: rolesallowed, permitall and denyall
 	//see: https://spin.atomicobject.com/2016/07/26/dropwizard-dive-part-1/
 	@GET
 	@Path("/{teamid}")
     @UnitOfWork
-//    @PermitAll
+    @PermitAll //all authenticated users are allowed to access the method - remember that a guest user was registered
     public Response getTeam(@PathParam("teamid") LongParam teamid) {
 //		Team teamFound = teamDAO.findById(teamid);
 		Optional<Team> teamOptional = teamDAO.findById(teamid.get());
@@ -63,10 +70,29 @@ public class TeamResource {
 		return Response.status(Response.Status.OK).entity(teamOptional).build();
     }
 
+	@GET
+	@Path("/{teamid}/xml") //with this annotation an additional xml endpoint is given
+    @UnitOfWork
+    @PermitAll //all authenticated users are allowed to access the method - remember that a guest user was registered
+    @Produces(MediaType.APPLICATION_XML)
+    public Response getTeamXML(@PathParam("teamid") LongParam teamid) {
+//		Team teamFound = teamDAO.findById(teamid);
+		Optional<Team> teamOptional = teamDAO.findById(teamid.get());
+		
+		return Response.status(Response.Status.OK).entity(teamOptional).build();
+    }
+	
+	
     @GET
     @UnitOfWork
-//    @PermitAll
-    public Response getAllTeams() { //(@Auth User user) {
+    @PermitAll
+    public Response getAllTeams(@Auth Optional<User> user) {
+    	if (user.isPresent()) {
+    		LOGGER.info("Hello, " + user.get().getName());
+    	} else {
+    		LOGGER.info("Unknown user detected in GET method ");
+    	}
+    	
     	if (teamDAO.findAll().isEmpty()) {
     		throw new NotFoundException("No team is available");
     	} else {
@@ -79,8 +105,9 @@ public class TeamResource {
     @UnitOfWork
     //permitall works with the given credentionals .. for the roles allowed like the name mentioned, the roles are required
 //    @PermitAll
-//  @RolesAllowed({"ADMIN"})
-    public Response createTeam(@NotNull @Valid Team team) {
+    @RolesAllowed({"ADMIN"})
+    public Response createTeam(@Auth User user, @NotNull @Valid Team team) {
+    	
     	if (team.getId() != null) {
     		LOGGER.error("id field is not empty ");
     		//die entity hier ist der return value... gibt das object zurück.. eher errorEntity??
@@ -104,8 +131,8 @@ public class TeamResource {
     @DELETE
     @Path("/{teamid}")
     @UnitOfWork
-//    @RolesAllowed({"ADMIN"})
-    public Response deleteTeam(@PathParam("teamid") LongParam teamid) {
+    @RolesAllowed("ADMIN")
+    public Response deleteTeam(@Auth User user, @PathParam("teamid") LongParam teamid) {
     	Optional<Team> teamOptional = teamDAO.findById(teamid.get());
     	
     	if (!teamOptional.isPresent()) {

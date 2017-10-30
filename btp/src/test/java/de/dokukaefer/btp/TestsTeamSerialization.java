@@ -15,7 +15,6 @@ import java.io.IOException;
 import org.junit.Test;
 
 import io.dropwizard.jackson.Jackson;
-import junit.framework.TestCase;
 
 public class TestsTeamSerialization {
 
@@ -23,7 +22,8 @@ public class TestsTeamSerialization {
 	
 	@Test
 	public void serializesToJson() throws JsonParseException, JsonMappingException, JsonProcessingException, IOException {
-		final Team team = new Team("BV Malsch");
+		Team team = new Team("BV Malsch");
+		team.setId(1L);
 		
 		final String expected = MAPPER.writeValueAsString(
 				MAPPER.readValue(fixture("fixtures/team.json"), Team.class));

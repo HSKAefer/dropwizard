@@ -1,5 +1,7 @@
 package de.dokukaefer.btp.core;
 
+import java.net.URI;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,13 +19,27 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.ws.rs.core.Link;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+//import org.glassfish.jersey.linking.Binding;
+//import org.glassfish.jersey.linking.InjectLink;
+//import org.glassfish.jersey.linking.InjectLink.Style;
+//import org.glassfish.jersey.linking.InjectLinks;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import de.dokukaefer.btp.res.TeamResource;
 
 @Entity
 @Table(name = "TEAMS")
@@ -36,6 +52,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 		}
 )
 //@JsonIgnoreProperties("games")// this works but does not show the games in the teams json file.
+@XmlRootElement(name = "Team")
 public class Team {
 
 	@Id
@@ -43,7 +60,19 @@ public class Team {
 	@Column(name = "ID")
 	@JsonProperty
     private Long id;
-	
+
+	//hateoas hypermedia link injection (HATEOAS)
+//	@InjectLink(
+//			resource = TeamResource.class,
+//			style = Style.ABSOLUTE,
+//			rel = "self",
+//			bindings = @Binding(name = "id", value = "${instance.id}"),
+//			method = "get"
+//			)
+//	@XmlJavaTypeAdapter(Link.JaxbAdapter.class)
+//	@XmlElement(name = "link")
+//	Link self;
+
 	@Column(name = "TEAMNAME")
 	@JsonProperty
 //	@NotEmpty //ensure that the name is not null or blank
@@ -62,15 +91,12 @@ public class Team {
 		games.add(game);
 	}
 	
-	public void removeMatch(Game game) {
-		games.remove(game);
-    }
 	
 	public Team() {
 		
 	}
-	
-//	@JsonCreator
+
+	//	@JsonCreator
 //	public Team(@JsonProperty("teamname") String teamname) { //if jsonproperty is set. the value is required in the post mehtod!
 	public Team(String teamname) {
 		this.teamname = teamname.trim();

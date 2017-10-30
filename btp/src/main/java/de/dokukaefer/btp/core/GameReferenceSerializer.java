@@ -28,8 +28,10 @@ public class GameReferenceSerializer extends JsonSerializer<Set<Game>> {
 			String formattedDate = dateFormat.format(game.getDate());
 			jgen.writeStartObject();
 			jgen.writeNumberField("id", game.getId());
-			jgen.writeStringField("date", formattedDate);
+			jgen.writeStringField("date", formattedDate);			
 			jgen.writeEndObject();
+		
+			
 		}
 		jgen.writeEndArray();
 		

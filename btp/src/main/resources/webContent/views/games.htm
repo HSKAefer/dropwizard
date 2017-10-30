@@ -8,7 +8,7 @@ we dont wanna show the new button in the archive -->
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="game in games">
+		<tr ng-repeat="game in games | orderBy: '-id'"><!-- das - in der order steht für umgekehrte reihenfolge -->
 			<td>{{game.id}}</td>
 			<td>{{game.date | date: 'dd.MM.yyyy'}}</td>
 			<td>{{game.teams[0].teamname}}</td>
