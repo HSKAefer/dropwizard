@@ -22,6 +22,8 @@ public class TestsTeamDeserialization {
 	@Test
 	public void deserializesFromJSON() throws JsonParseException, JsonMappingException, IOException {
 		final Team team = new Team("BV Malsch");
+		team.setId(1L);
+		
 		assertThat(MAPPER.readValue(fixture("fixtures/team.json"), Team.class))
 		.isEqualTo(team);
 	}

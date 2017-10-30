@@ -18,7 +18,9 @@ public class User implements Principal {
         this.roles = roles;
     }
 	
-	@Override
+	//only getters are allowed
+	//-----------------------
+	//@Override
 	public String getName() {
 		return userName;
 	}
@@ -30,5 +32,5 @@ public class User implements Principal {
 	    public Set<String> getRoles() {
 	        return roles;
 	    }
-	
+	//------------------------
 }

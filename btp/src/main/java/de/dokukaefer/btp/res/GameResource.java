@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.dokukaefer.btp.core.Game;
+import de.dokukaefer.btp.core.Result;
 import de.dokukaefer.btp.db.GameDAO;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;

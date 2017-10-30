@@ -1,3 +1,74 @@
-<div>
-    {{games[games.length - 1].date}}
+<div ng-controller="CurrentGameController" >
+	<div ng-if="games.length > 0">
+		
+		<div class="row">
+			<div class="col-xs-3"><b>Date </b> {{games[games.length - 1].date}}</div>
+			<div class="col-xs-9">
+				<div class="btn-toolbar">
+					<a class="btn btn-primary pull-right" href="#/current_game/new"><span class="glyphicon glyphicon-plus"></span> Add Single Match</a> 
+					<a class="btn btn-primary pull-right" href="#/current_game/new"><span class="glyphicon glyphicon-plus"></span> Add Double Match</a>
+				</div>
+			</div>
+		</div>
+		
+		<hr>
+
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="input-group">
+					<div class="form-control">{{games[games.length - 1].teams[0].teamname}}</div>
+					<span class="input-group-addon">3</span>
+				</div>
+			</div>
+			
+			<!-- <div class="col-xs-2 text-center">VS</div> -->
+			
+			<div class="col-xs-6">	
+				<div class="input-group text-right">
+					<span class="input-group-addon">2</span>
+					<div class="form-control">{{games[games.length - 1].teams[1].teamname}}</div>
+				</div>
+			</div>
+		</div>
+		
+		<hr>
+		
+		<!-- hier nur die gespeicherten dinge anzeigen -->
+			
+		<!-- <div class="row">
+			<div class="col-xs-6">
+				<div class="input-group">
+					<div class="form-control">Player One</div>
+					<span class="input-group-btn"><button class="btn btn-default" type="button">0</button></span>
+				</div>
+			</div>
+			<div class="col-xs-6">	
+				<div class="input-group text-right">
+					<span class="input-group-btn"><button class="btn btn-default" type="button">0</button></span>
+					<div class="form-control">Player Two</div>
+				</div>
+			</div>
+		</div> -->
+		
+	
+
+
+
+		<!-- <table class="table-hover">
+			<thead>
+				<tr class="row-sm-12">
+					<th class="col-xs-6">Date</th><td class="col-xs-6"></td>
+				</tr>
+				<tr>
+				</tr>
+			</thead>
+			<tbody>
+			 	<tr class="row-sm-12">
+			 		<td class="col-xs-5"><div class="input-group"><div class="form-control">{{games[games.length - 1].teams[0].teamname}}</div><span class="input-group-addon"><button type="button" class="btn btn-default">0</button></span></div></td>
+			 		<td class="col-xs-2 text-center">VS</td>
+			 		<td class="col-xs-5"><div class="input-group"><span class="input-group-addon"><span class="badge pull-right">0</span></span><div class="form-control">{{games[games.length - 1].teams[1].teamname}}</div></div></td>
+			 	</tr>
+			</tbody>
+		</table> -->
+	</div>
 </div>

@@ -10,7 +10,7 @@ database:
   # jdbc:h2:mem:btp - mem for in memory database otherwise it will be an embedded database file located at the url
   
   # url: jdbc:h2:mem:testdb # jdbc:postgresql://localhost:5432/btpdb
-  url: jdbc:h2:./target/btp
+  url: jdbc:h2:./target/test-btp
   
   properties:
    
@@ -24,9 +24,6 @@ database:
     hibernate.hbm2ddl.auto: update
     # hibernate.hbm2ddl.auto: create
 
-swagger:
-  resourcePackage: de.dokukaefer.btp.res #wo liegen die resourcen?
-
 # server information
 # ___________________________________________________________________________________________  
 server: 
@@ -37,7 +34,7 @@ server:
       port: 8080
   adminConnectors:
     - type: http
-      port: 8081 # $env:AMDIN_PORT:8081 # sorgt dafür, dass eine eigene Variable für den Port verwendet wird. default ist port: 8081
+      port: 8081
   rootPath: /api/ # the application path is moved to a sub-url so that an webpage (asset) can be served via the root
   maxThreads: 1024
 
@@ -85,4 +82,3 @@ assets: # assets only works if the dependency dropwizard-configurable-assets-bun
     /: /src/main/resources/webContent/
     #  mappings:
     # /webContent: /
-    

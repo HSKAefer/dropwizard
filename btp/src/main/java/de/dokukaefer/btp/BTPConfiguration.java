@@ -9,6 +9,7 @@ import io.dropwizard.Configuration;
 import io.dropwizard.bundles.assets.AssetsBundleConfiguration;
 import io.dropwizard.bundles.assets.AssetsConfiguration;
 import io.dropwizard.db.DataSourceFactory;
+import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 
 public class BTPConfiguration extends Configuration implements AssetsBundleConfiguration {
 	
@@ -38,6 +39,9 @@ public class BTPConfiguration extends Configuration implements AssetsBundleConfi
 	public AssetsConfiguration getAssetsConfiguration() {
 		return assets;
 	}
+	
+	@JsonProperty("swagger")
+	public SwaggerBundleConfiguration swaggerBundleConfiguration;
 	
 //	public void setAssetsConfiguration(AssetsConfiguration assets) {
 //		this.assets = assets;

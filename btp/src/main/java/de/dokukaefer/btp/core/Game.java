@@ -4,7 +4,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -23,6 +25,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -66,19 +69,24 @@ public class Game {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
 	private Date date;
 	
+//	@OneToMany(mappedBy = "game")
+//	@JsonSerialize(using = GameReferenceSerializer.class)
+//	private List<Result> results;
+	
 	@ManyToMany
 	@JoinTable(name = "GAMES_TEAMS", 
 	joinColumns = @JoinColumn(name = "GAME_ID", referencedColumnName="ID"),
 	inverseJoinColumns = @JoinColumn(name = "TEAM_ID", referencedColumnName="ID"))
+	@Size(min = 2, max = 2)
 	private Set<Team> teams;
 
-//	public void addTeam(Team team) {
-//		teams.add(team);
-//	}
-//	
-//	public void removeTeam(Team team) {
-//        teams.remove(team);
-//    }
+	public void addTeam(Team team) {
+		teams.add(team);
+	}
+	
+	public void removeTeam(Team team) {
+        teams.remove(team);
+    }
 	
 	public Game() {
 		
@@ -88,6 +96,30 @@ public class Game {
 		this.date = date;
 	}
 	
+//	public List<Result> getResults() {
+//		return results;
+//	}
+	
+//	public void addTeam(Team t, int points) {
+//		Result result = new Result();
+//		result.setGame(this);
+//		result.setTeam(t);
+//		result.setGameId(this.getId());
+//		result.setTeamId(t.getId());
+//		result.setPoints(3);
+//		if (this.results == null) {
+//			this.results = new ArrayList<>();
+//		}
+//		
+//		this.results.add(result);
+//		t.getResults().add(result);
+//	
+//	}
+
+//	public void setResults(List<Result> results) {
+//		this.results = results;
+//	}
+
 	public Long getId() {
 		return id;
 	}
@@ -121,7 +153,6 @@ public class Game {
 		int result = 1;
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((teams == null) ? 0 : teams.hashCode());
 		return result;
 	}
 
@@ -143,11 +174,6 @@ public class Game {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (teams == null) {
-			if (other.teams != null)
-				return false;
-		} else if (!teams.equals(other.teams))
 			return false;
 		return true;
 	}
