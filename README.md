@@ -41,4 +41,34 @@ Erweiterungen sind unter anderem:
 * Metrics (Statistiken - wie viel Zugriffe pro Sekunde?, Helthchecks - Ist die Datenbank online? Service überlastet?)
 * Logging mit SLF4J und LOGBACK
 
-# Die Klassen am Beispiel Team
+# Aufbau der Klassen am Beispiel Team
+
+    Team.java
+         
+  Das POJO Object mit den getter/setter-Methoden. Falls die Datenbank nicht durch ein Migrationsskript erzeugt werden soll, dann müssen die Annotationen @Entity auf Klassenebene, bzw. @Column auf den Attributen aus dem Package javax.persistence verwendet werden. Dadurch erfolgt ein automatisiertes OR-Mapping.
+  
+    TeamResource.java
+    
+  Ist die Resource, die konsumiert wird bzw. das JSON produziert. Wichtig ist hier die Klassenannotation @Path um den Pfad zur Resource festzulegen. Produces/Consumes gibt an, in welchem Format die Requests/Responses vorliegen sollen (xml/JSON/text/..).
+  HTTP requests wie GET POST PUT DELETE sind als Annotation an einzelne Methoden gesetzt. Zusätzlich mit dem Response Rückgabetyp erhält man entpsrechende Status Codes (201, 400, ...).
+  
+    BTPApplication.java
+  
+  Bis jetzt weiß der Server noch nicht, dass Resource Klassen existieren. Das Programm würde so nicht funktionieren. Daher müssen die Resource Klassen der Anwendung bekannt gemacht werden. Dies geschieht in der BTPApplication Klass, die von Application erbt. Hier werden alle wichtigen Services registriert und Bundles initialisiert.
+  
+  * Zuerst wird ein HibernateBundle erzeugt.
+  * In der initialize Methode fügt man dieses Bundle dann der bootstrap Konfiguration hinzu.
+  * In der run Methode erzeugt man eine SessionFactory für das TeamDAO.
+  * Zum Schluss fügt man der Environment die TeamResource hinzu.
+
+Die Registrierung der Resourcen kann über ein GuiceBundle auch automatisiert werden, in dem man ein Package angibt, in dem alle Resourcen hinterlegt sind (auto discovery). Sieht in etwa so aus:
+
+```java
+   bootstrap.addBundle(GuiceBundle.builder()
+   .enableAutoConfig("packagename")
+   .modules(new GuiceModule())
+   .build());
+```
+
+Zurück zu den Resource Klassen. Man kann hier die Pfade auch kombinieren.
+
