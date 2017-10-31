@@ -5,10 +5,8 @@ import java.util.Optional;
 
 import org.hibernate.SessionFactory;
 
-import de.dokukaefer.btp.core.Player;
 import de.dokukaefer.btp.core.Team;
 import io.dropwizard.hibernate.AbstractDAO;
-import io.dropwizard.jersey.params.LongParam;
 
 public class TeamDAO extends AbstractDAO<Team> {
 

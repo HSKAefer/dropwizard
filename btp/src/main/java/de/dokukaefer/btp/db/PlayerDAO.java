@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.hibernate.SessionFactory;
 
 import de.dokukaefer.btp.core.Player;
-import de.dokukaefer.btp.core.Team;
 import io.dropwizard.hibernate.AbstractDAO;
 
 public class PlayerDAO extends AbstractDAO<Player>{

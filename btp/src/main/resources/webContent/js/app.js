@@ -11,7 +11,7 @@ app.config(function($routeProvider) {
 	.when('/games/:id', { templateUrl: '/views/games_details.htm', controller: 'GameDetailController' })
 	.when('/current_game', { templateUrl: '/views/current_game.htm', controller: 'CurrentGameController' })
 	.when('/current_game/:id', { templateUrl: '/views/current_game_details.htm', controller: 'GameDetailController' })
-	.when('/about', { template: 'Informationen ueber die App und den Ersteller' });
+	.when('/about', { template: "<p>Informationen ueber die App und den Ersteller</p> <p><a href=\"/api/swagger\">Link zur API Dokumentation mit Swagger</a></p>" });
 //	.otherwise({ redirectTo: '/' });
 });
 

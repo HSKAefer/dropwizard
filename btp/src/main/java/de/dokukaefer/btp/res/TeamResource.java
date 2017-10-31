@@ -18,13 +18,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Link;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
-import javax.ws.rs.core.UriInfo;
 
 import org.eclipse.jetty.http.HttpStatus;
 import org.slf4j.Logger;
@@ -36,14 +33,17 @@ import de.dokukaefer.btp.db.TeamDAO;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
-import io.dropwizard.jersey.sessions.Session;
-//import io.swagger.annotations.Api;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 
 @Path("/teams")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Api(value = "Teams")
+@Api(value = "Teams")//swagger annotation shown on localhost:8080/api/swagger - value Teams needs to be fit with the tag name in BTPApiConfig interface
 public class TeamResource {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(TeamResource.class);
@@ -63,7 +63,13 @@ public class TeamResource {
 	@Path("/{teamid}")
     @UnitOfWork
     @PermitAll //all authenticated users are allowed to access the method - remember that a guest user was registered
-    public Response getTeam(@PathParam("teamid") LongParam teamid) {
+    @ApiOperation(value = "Find team by id", notes = "Find a team by id", response = Team.class)
+	@ApiResponses( {
+	    @ApiResponse( code = 404, message = "No team is existing" ), 
+	    @ApiResponse( code = 400, message = "The given id is not a number"),
+	    @ApiResponse( code = 200, message = "OK - Returns the team object")
+	} )
+	public Response getTeam(@ApiParam(value="The id of a team") @PathParam("teamid") LongParam teamid) {
 //		Team teamFound = teamDAO.findById(teamid);
 		Optional<Team> teamOptional = teamDAO.findById(teamid.get());
 		
@@ -75,6 +81,7 @@ public class TeamResource {
     @UnitOfWork
     @PermitAll //all authenticated users are allowed to access the method - remember that a guest user was registered
     @Produces(MediaType.APPLICATION_XML)
+	@ApiOperation(value = "Find team by id", notes = "find a team by id (xml) format")
     public Response getTeamXML(@PathParam("teamid") LongParam teamid) {
 //		Team teamFound = teamDAO.findById(teamid);
 		Optional<Team> teamOptional = teamDAO.findById(teamid.get());
@@ -86,6 +93,7 @@ public class TeamResource {
     @GET
     @UnitOfWork
     @PermitAll
+    @ApiOperation(value = "List all teams", notes = "List all the teams")
     public Response getAllTeams(@Auth Optional<User> user) {
     	if (user.isPresent()) {
     		LOGGER.info("Hello, " + user.get().getName());
@@ -106,6 +114,7 @@ public class TeamResource {
     //permitall works with the given credentionals .. for the roles allowed like the name mentioned, the roles are required
 //    @PermitAll
     @RolesAllowed({"ADMIN"})
+    @ApiOperation(value = "Create new team", notes = "Creates a new team, requires admin login", response = Team.class)
     public Response createTeam(@Auth User user, @NotNull @Valid Team team) {
     	
     	if (team.getId() != null) {
@@ -132,6 +141,7 @@ public class TeamResource {
     @Path("/{teamid}")
     @UnitOfWork
     @RolesAllowed("ADMIN")
+    @ApiOperation(value = "Delete existing team", notes = "Deletes an exsiting team")
     public Response deleteTeam(@Auth User user, @PathParam("teamid") LongParam teamid) {
     	Optional<Team> teamOptional = teamDAO.findById(teamid.get());
     	
@@ -148,6 +158,7 @@ public class TeamResource {
     @Path("/{teamid}")
     @UnitOfWork
 //    @RolesAllowed({"ADMIN"})
+    @ApiOperation(value="Update existing team", notes = "updates the name of an existing team")
     public Response updateTeam(@PathParam("teamid") LongParam teamid, @Valid @NotNull Team team) {
 
        	Optional<Team> foundTeam = teamDAO.findById(teamid.get());

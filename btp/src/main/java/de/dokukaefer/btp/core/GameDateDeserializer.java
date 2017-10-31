@@ -3,8 +3,6 @@ package de.dokukaefer.btp.core;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
 import java.util.Date;
 
 import com.fasterxml.jackson.core.JsonParser;

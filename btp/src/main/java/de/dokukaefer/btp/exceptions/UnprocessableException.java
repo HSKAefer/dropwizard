@@ -2,6 +2,10 @@ package de.dokukaefer.btp.exceptions;
 
 public class UnprocessableException extends Throwable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int code;
 	
 	public UnprocessableException() {

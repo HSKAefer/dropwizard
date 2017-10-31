@@ -3,9 +3,6 @@ package de.dokukaefer.btp;
 import javax.ws.rs.client.Client;
 
 import org.glassfish.jersey.client.JerseyClientBuilder;
-//import org.glassfish.jersey.linking.DeclarativeLinkingFeature;
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.server.filter.*;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +29,6 @@ import io.dropwizard.auth.basic.BasicCredentialAuthFilter;
 import io.dropwizard.bundles.assets.ConfiguredAssetsBundle;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
-import io.dropwizard.hibernate.ScanningHibernateBundle;
 import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -122,7 +118,7 @@ public class BTPApplication extends Application<BTPConfiguration>{
 		
 		environment.jersey().register(new TeamResource(teamDAO));
 		environment.jersey().register(new GameResource(gameDAO));
-		environment.jersey().register(new PlayerResource(playerDAO, teamDAO));
+		environment.jersey().register(new PlayerResource(playerDAO));
 		environment.jersey().register(new UnprocessableException());
 		// changes the application root path. since dropwizard 0.8.0 it can be changed in the yaml file via
 		// applicationContextPath: /

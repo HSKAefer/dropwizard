@@ -1,7 +1,5 @@
 package de.dokukaefer.btp.core;
 
-import java.net.URI;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -12,34 +10,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.ws.rs.core.Link;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-//import org.glassfish.jersey.linking.Binding;
-//import org.glassfish.jersey.linking.InjectLink;
-//import org.glassfish.jersey.linking.InjectLink.Style;
-//import org.glassfish.jersey.linking.InjectLinks;
-import org.hibernate.validator.constraints.NotEmpty;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import de.dokukaefer.btp.res.TeamResource;
 
 @Entity
 @Table(name = "TEAMS")
