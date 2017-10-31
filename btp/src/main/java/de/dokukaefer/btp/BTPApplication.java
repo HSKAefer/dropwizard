@@ -135,7 +135,8 @@ public class BTPApplication extends Application<BTPConfiguration>{
 				new BasicCredentialAuthFilter.Builder<User>()
 				.setAuthenticator(new CustomAuthenticator())
 				.setAuthorizer(new CustomAuthorizer())
-				.setRealm("ADMIN ZONE PLEASE LOGIN") //der name der beim popup unter basicauth in dem formular erscheint
+				.setPrefix("Basic")
+				.setRealm("SUPER SECRET STUFF") //der name der beim popup unter basicauth in dem formular erscheint
 				.buildAuthFilter()));
 		//if one does not use the authorization then this registration is not required
 		environment.jersey().register(RolesAllowedDynamicFeature.class);

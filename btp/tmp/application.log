@@ -1,0 +1,723 @@
+INFO   [14:00:18.605] [main] o.e.j.u.log -  Logging initialized @3799ms to org.eclipse.jetty.util.log.Slf4jLog 
+INFO   [14:00:18.792] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [14:00:18.797] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [14:00:18.803] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-assets for path /api/swagger-static/* 
+INFO   [14:00:18.865] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-oauth2-connect for path /apio2c.html/* 
+INFO   [14:00:19.134] [main] o.r.Reflections -  Reflections took 230 ms to scan 2 urls, producing 92 keys and 110 values  
+INFO   [14:00:19.941] [main] i.d.b.a.ConfiguredAssetsBundle -  Registering ConfiguredAssetBundle with name: assets for path /* 
+INFO   [14:00:20.343] [main] o.h.Version -  HHH000412: Hibernate Core {5.2.8.Final} 
+INFO   [14:00:20.346] [main] o.h.c.Environment -  HHH000206: hibernate.properties not found 
+INFO   [14:00:20.367] [main] i.d.h.SessionFactoryFactory -  Entity classes: [de.dokukaefer.btp.core.Game, de.dokukaefer.btp.core.Player, de.dokukaefer.btp.core.Result, de.dokukaefer.btp.core.Team] 
+INFO   [14:00:20.422] [main] o.h.a.c.Version -  HCANN000001: Hibernate Commons Annotations {5.0.1.Final} 
+INFO   [14:00:20.899] [main] o.h.d.Dialect -  HHH000400: Using dialect: org.hibernate.dialect.H2Dialect 
+INFO   [14:00:21.557] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.util.Currency] overrides previous : org.hibernate.type.CurrencyType@1d6713dd 
+INFO   [14:00:21.557] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Duration] overrides previous : org.hibernate.type.DurationType@3b39e79b 
+INFO   [14:00:21.557] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Instant] overrides previous : org.hibernate.type.InstantType@2f86f9cf 
+INFO   [14:00:21.557] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDate] overrides previous : org.hibernate.type.LocalDateType@7e2bd5e6 
+INFO   [14:00:21.558] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDateTime] overrides previous : org.hibernate.type.LocalDateTimeType@76a1146d 
+INFO   [14:00:21.558] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalTime] overrides previous : org.hibernate.type.LocalTimeType@3386c206 
+INFO   [14:00:21.558] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetDateTime] overrides previous : org.hibernate.type.OffsetDateTimeType@1322b575 
+INFO   [14:00:21.558] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetTime] overrides previous : org.hibernate.type.OffsetTimeType@6dded900 
+INFO   [14:00:21.559] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.ZonedDateTime] overrides previous : org.hibernate.type.ZonedDateTimeType@d504137 
+INFO   [14:00:22.146] [main] o.h.h.i.QueryTranslatorFactoryInitiator -  HHH000397: Using ASTQueryTranslatorFactory 
+INFO   [14:00:22.505] [main] d.d.b.BTPApplication -  register the jersey REST resources 
+INFO   [14:00:22.524] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [14:00:22.525] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [14:00:22.539] [main] i.d.s.ServerFactory -  Starting Badminton Tournament Platform
+ 
+INFO   [14:00:22.757] [main] o.e.j.s.SetUIDListener -  Opened application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:00:22.757] [main] o.e.j.s.SetUIDListener -  Opened admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:00:22.763] [main] o.e.j.s.Server -  jetty-9.4.2.v20170220 
+WARN   [14:00:23.390] [main] o.g.j.i.i.Providers -  A provider de.dokukaefer.btp.exceptions.UnprocessableException registered in SERVER runtime does not implement any provider interfaces applicable in the SERVER runtime. Due to constraint configuration problems the provider de.dokukaefer.btp.exceptions.UnprocessableException will be ignored.  
+INFO   [14:00:23.771] [main] i.d.j.DropwizardResourceConfig -  The following paths were found for the configured resources:
+
+    GET     /api/games (de.dokukaefer.btp.res.GameResource)
+    POST    /api/games (de.dokukaefer.btp.res.GameResource)
+    GET     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    PUT     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    GET     /api/players (de.dokukaefer.btp.res.PlayerResource)
+    POST    /api/players (de.dokukaefer.btp.res.PlayerResource)
+    DELETE  /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    PUT     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/swagger (io.federecio.dropwizard.swagger.SwaggerResource)
+    GET     /api/swagger.{type:json|yaml} (io.swagger.jaxrs.listing.ApiListingResource)
+    GET     /api/teams (de.dokukaefer.btp.res.TeamResource)
+    POST    /api/teams (de.dokukaefer.btp.res.TeamResource)
+    DELETE  /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    PUT     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid}/xml (de.dokukaefer.btp.res.TeamResource)
+ 
+INFO   [14:00:23.774] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@6533629{/,null,AVAILABLE} 
+INFO   [14:00:23.779] [main] i.d.s.AdminEnvironment -  tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+ 
+INFO   [14:00:23.790] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@b3a8455{/,null,AVAILABLE} 
+INFO   [14:00:23.808] [main] o.e.j.s.AbstractConnector -  Started application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:00:23.811] [main] o.e.j.s.AbstractConnector -  Started admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:00:23.811] [main] o.e.j.s.Server -  Started @9007ms 
+INFO   [14:00:23.905] [main] o.e.j.s.AbstractConnector -  Stopped application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:00:23.906] [main] o.e.j.s.AbstractConnector -  Stopped admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:00:23.908] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@b3a8455{/,null,UNAVAILABLE} 
+INFO   [14:00:23.911] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@6533629{/,null,UNAVAILABLE} 
+INFO   [14:04:00.341] [main] o.e.j.u.log -  Logging initialized @2804ms to org.eclipse.jetty.util.log.Slf4jLog 
+INFO   [14:04:00.463] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [14:04:00.465] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [14:04:00.470] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-assets for path /api/swagger-static/* 
+INFO   [14:04:00.509] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-oauth2-connect for path /apio2c.html/* 
+INFO   [14:04:00.659] [main] o.r.Reflections -  Reflections took 125 ms to scan 2 urls, producing 92 keys and 110 values  
+INFO   [14:04:01.008] [main] i.d.b.a.ConfiguredAssetsBundle -  Registering ConfiguredAssetBundle with name: assets for path /* 
+INFO   [14:04:01.307] [main] o.h.Version -  HHH000412: Hibernate Core {5.2.8.Final} 
+INFO   [14:04:01.311] [main] o.h.c.Environment -  HHH000206: hibernate.properties not found 
+INFO   [14:04:01.330] [main] i.d.h.SessionFactoryFactory -  Entity classes: [de.dokukaefer.btp.core.Game, de.dokukaefer.btp.core.Player, de.dokukaefer.btp.core.Result, de.dokukaefer.btp.core.Team] 
+INFO   [14:04:01.388] [main] o.h.a.c.Version -  HCANN000001: Hibernate Commons Annotations {5.0.1.Final} 
+INFO   [14:04:01.820] [main] o.h.d.Dialect -  HHH000400: Using dialect: org.hibernate.dialect.H2Dialect 
+INFO   [14:04:02.425] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.util.Currency] overrides previous : org.hibernate.type.CurrencyType@1d6713dd 
+INFO   [14:04:02.425] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Duration] overrides previous : org.hibernate.type.DurationType@3b39e79b 
+INFO   [14:04:02.426] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Instant] overrides previous : org.hibernate.type.InstantType@2f86f9cf 
+INFO   [14:04:02.426] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDate] overrides previous : org.hibernate.type.LocalDateType@7e2bd5e6 
+INFO   [14:04:02.426] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDateTime] overrides previous : org.hibernate.type.LocalDateTimeType@76a1146d 
+INFO   [14:04:02.426] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalTime] overrides previous : org.hibernate.type.LocalTimeType@3386c206 
+INFO   [14:04:02.427] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetDateTime] overrides previous : org.hibernate.type.OffsetDateTimeType@1322b575 
+INFO   [14:04:02.427] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetTime] overrides previous : org.hibernate.type.OffsetTimeType@6dded900 
+INFO   [14:04:02.427] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.ZonedDateTime] overrides previous : org.hibernate.type.ZonedDateTimeType@d504137 
+INFO   [14:04:02.919] [main] o.h.h.i.QueryTranslatorFactoryInitiator -  HHH000397: Using ASTQueryTranslatorFactory 
+INFO   [14:04:03.231] [main] d.d.b.BTPApplication -  register the jersey REST resources 
+INFO   [14:04:03.246] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [14:04:03.246] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [14:04:03.261] [main] i.d.s.ServerFactory -  Starting Badminton Tournament Platform
+ 
+INFO   [14:04:03.475] [main] o.e.j.s.SetUIDListener -  Opened application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:04:03.476] [main] o.e.j.s.SetUIDListener -  Opened admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:04:03.479] [main] o.e.j.s.Server -  jetty-9.4.2.v20170220 
+WARN   [14:04:04.284] [main] o.g.j.i.i.Providers -  A provider de.dokukaefer.btp.exceptions.UnprocessableException registered in SERVER runtime does not implement any provider interfaces applicable in the SERVER runtime. Due to constraint configuration problems the provider de.dokukaefer.btp.exceptions.UnprocessableException will be ignored.  
+INFO   [14:04:04.754] [main] i.d.j.DropwizardResourceConfig -  The following paths were found for the configured resources:
+
+    GET     /api/games (de.dokukaefer.btp.res.GameResource)
+    POST    /api/games (de.dokukaefer.btp.res.GameResource)
+    GET     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    PUT     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    GET     /api/players (de.dokukaefer.btp.res.PlayerResource)
+    POST    /api/players (de.dokukaefer.btp.res.PlayerResource)
+    DELETE  /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    PUT     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/swagger (io.federecio.dropwizard.swagger.SwaggerResource)
+    GET     /api/swagger.{type:json|yaml} (io.swagger.jaxrs.listing.ApiListingResource)
+    GET     /api/teams (de.dokukaefer.btp.res.TeamResource)
+    POST    /api/teams (de.dokukaefer.btp.res.TeamResource)
+    DELETE  /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    PUT     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid}/xml (de.dokukaefer.btp.res.TeamResource)
+ 
+INFO   [14:04:04.761] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@6533629{/,null,AVAILABLE} 
+INFO   [14:04:04.780] [main] i.d.s.AdminEnvironment -  tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+ 
+INFO   [14:04:04.793] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@b3a8455{/,null,AVAILABLE} 
+INFO   [14:04:04.820] [main] o.e.j.s.AbstractConnector -  Started application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:04:04.825] [main] o.e.j.s.AbstractConnector -  Started admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:04:04.827] [main] o.e.j.s.Server -  Started @7292ms 
+INFO   [14:04:05.202] [main] o.e.j.s.AbstractConnector -  Stopped application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:04:05.203] [main] o.e.j.s.AbstractConnector -  Stopped admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:04:05.205] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@b3a8455{/,null,UNAVAILABLE} 
+INFO   [14:04:05.208] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@6533629{/,null,UNAVAILABLE} 
+INFO   [14:08:41.294] [main] o.e.j.u.log -  Logging initialized @2781ms to org.eclipse.jetty.util.log.Slf4jLog 
+INFO   [14:08:41.428] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [14:08:41.431] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [14:08:41.436] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-assets for path /api/swagger-static/* 
+INFO   [14:08:41.481] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-oauth2-connect for path /apio2c.html/* 
+INFO   [14:08:41.644] [main] o.r.Reflections -  Reflections took 129 ms to scan 2 urls, producing 92 keys and 110 values  
+INFO   [14:08:41.928] [main] i.d.b.a.ConfiguredAssetsBundle -  Registering ConfiguredAssetBundle with name: assets for path /* 
+INFO   [14:08:42.209] [main] o.h.Version -  HHH000412: Hibernate Core {5.2.8.Final} 
+INFO   [14:08:42.214] [main] o.h.c.Environment -  HHH000206: hibernate.properties not found 
+INFO   [14:08:42.238] [main] i.d.h.SessionFactoryFactory -  Entity classes: [de.dokukaefer.btp.core.Game, de.dokukaefer.btp.core.Player, de.dokukaefer.btp.core.Result, de.dokukaefer.btp.core.Team] 
+INFO   [14:08:42.307] [main] o.h.a.c.Version -  HCANN000001: Hibernate Commons Annotations {5.0.1.Final} 
+INFO   [14:08:42.865] [main] o.h.d.Dialect -  HHH000400: Using dialect: org.hibernate.dialect.H2Dialect 
+INFO   [14:08:43.577] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.util.Currency] overrides previous : org.hibernate.type.CurrencyType@1d6713dd 
+INFO   [14:08:43.578] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Duration] overrides previous : org.hibernate.type.DurationType@3b39e79b 
+INFO   [14:08:43.578] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Instant] overrides previous : org.hibernate.type.InstantType@2f86f9cf 
+INFO   [14:08:43.579] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDate] overrides previous : org.hibernate.type.LocalDateType@7e2bd5e6 
+INFO   [14:08:43.579] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDateTime] overrides previous : org.hibernate.type.LocalDateTimeType@76a1146d 
+INFO   [14:08:43.580] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalTime] overrides previous : org.hibernate.type.LocalTimeType@3386c206 
+INFO   [14:08:43.581] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetDateTime] overrides previous : org.hibernate.type.OffsetDateTimeType@1322b575 
+INFO   [14:08:43.583] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetTime] overrides previous : org.hibernate.type.OffsetTimeType@6dded900 
+INFO   [14:08:43.583] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.ZonedDateTime] overrides previous : org.hibernate.type.ZonedDateTimeType@d504137 
+INFO   [14:08:44.071] [main] o.h.h.i.QueryTranslatorFactoryInitiator -  HHH000397: Using ASTQueryTranslatorFactory 
+INFO   [14:08:44.349] [main] d.d.b.BTPApplication -  register the jersey REST resources 
+INFO   [14:08:44.363] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [14:08:44.364] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [14:08:44.379] [main] i.d.s.ServerFactory -  Starting Badminton Tournament Platform
+ 
+INFO   [14:08:44.519] [main] o.e.j.s.SetUIDListener -  Opened application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:08:44.520] [main] o.e.j.s.SetUIDListener -  Opened admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:08:44.524] [main] o.e.j.s.Server -  jetty-9.4.2.v20170220 
+WARN   [14:08:45.104] [main] o.g.j.i.i.Providers -  A provider de.dokukaefer.btp.exceptions.UnprocessableException registered in SERVER runtime does not implement any provider interfaces applicable in the SERVER runtime. Due to constraint configuration problems the provider de.dokukaefer.btp.exceptions.UnprocessableException will be ignored.  
+INFO   [14:08:45.392] [main] i.d.j.DropwizardResourceConfig -  The following paths were found for the configured resources:
+
+    GET     /api/games (de.dokukaefer.btp.res.GameResource)
+    POST    /api/games (de.dokukaefer.btp.res.GameResource)
+    GET     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    PUT     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    GET     /api/players (de.dokukaefer.btp.res.PlayerResource)
+    POST    /api/players (de.dokukaefer.btp.res.PlayerResource)
+    DELETE  /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    PUT     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/swagger (io.federecio.dropwizard.swagger.SwaggerResource)
+    GET     /api/swagger.{type:json|yaml} (io.swagger.jaxrs.listing.ApiListingResource)
+    GET     /api/teams (de.dokukaefer.btp.res.TeamResource)
+    POST    /api/teams (de.dokukaefer.btp.res.TeamResource)
+    DELETE  /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    PUT     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid}/xml (de.dokukaefer.btp.res.TeamResource)
+ 
+INFO   [14:08:45.394] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@6533629{/,null,AVAILABLE} 
+INFO   [14:08:45.399] [main] i.d.s.AdminEnvironment -  tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+ 
+INFO   [14:08:45.407] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@b3a8455{/,null,AVAILABLE} 
+INFO   [14:08:45.423] [main] o.e.j.s.AbstractConnector -  Started application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:08:45.426] [main] o.e.j.s.AbstractConnector -  Started admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:08:45.426] [main] o.e.j.s.Server -  Started @6915ms 
+ERROR  [14:08:45.601] [main] o.g.j.m.i.WriterInterceptorExecutor -  MessageBodyWriter not found for media type=text/html, type=class de.dokukaefer.btp.core.Team, genericType=class de.dokukaefer.btp.core.Team. 
+INFO   [14:08:45.626] [main] o.e.j.s.AbstractConnector -  Stopped application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:08:45.628] [main] o.e.j.s.AbstractConnector -  Stopped admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:08:45.629] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@b3a8455{/,null,UNAVAILABLE} 
+INFO   [14:08:45.633] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@6533629{/,null,UNAVAILABLE} 
+INFO   [14:09:27.658] [main] o.e.j.u.log -  Logging initialized @2954ms to org.eclipse.jetty.util.log.Slf4jLog 
+INFO   [14:09:27.809] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [14:09:27.811] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [14:09:27.817] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-assets for path /api/swagger-static/* 
+INFO   [14:09:27.872] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-oauth2-connect for path /apio2c.html/* 
+INFO   [14:09:28.060] [main] o.r.Reflections -  Reflections took 146 ms to scan 2 urls, producing 92 keys and 110 values  
+INFO   [14:09:28.502] [main] i.d.b.a.ConfiguredAssetsBundle -  Registering ConfiguredAssetBundle with name: assets for path /* 
+INFO   [14:09:28.838] [main] o.h.Version -  HHH000412: Hibernate Core {5.2.8.Final} 
+INFO   [14:09:28.841] [main] o.h.c.Environment -  HHH000206: hibernate.properties not found 
+INFO   [14:09:28.863] [main] i.d.h.SessionFactoryFactory -  Entity classes: [de.dokukaefer.btp.core.Game, de.dokukaefer.btp.core.Player, de.dokukaefer.btp.core.Result, de.dokukaefer.btp.core.Team] 
+INFO   [14:09:28.933] [main] o.h.a.c.Version -  HCANN000001: Hibernate Commons Annotations {5.0.1.Final} 
+INFO   [14:09:29.475] [main] o.h.d.Dialect -  HHH000400: Using dialect: org.hibernate.dialect.H2Dialect 
+INFO   [14:09:30.167] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.util.Currency] overrides previous : org.hibernate.type.CurrencyType@1d6713dd 
+INFO   [14:09:30.168] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Duration] overrides previous : org.hibernate.type.DurationType@3b39e79b 
+INFO   [14:09:30.168] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Instant] overrides previous : org.hibernate.type.InstantType@2f86f9cf 
+INFO   [14:09:30.168] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDate] overrides previous : org.hibernate.type.LocalDateType@7e2bd5e6 
+INFO   [14:09:30.169] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDateTime] overrides previous : org.hibernate.type.LocalDateTimeType@76a1146d 
+INFO   [14:09:30.169] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalTime] overrides previous : org.hibernate.type.LocalTimeType@3386c206 
+INFO   [14:09:30.169] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetDateTime] overrides previous : org.hibernate.type.OffsetDateTimeType@1322b575 
+INFO   [14:09:30.170] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetTime] overrides previous : org.hibernate.type.OffsetTimeType@6dded900 
+INFO   [14:09:30.170] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.ZonedDateTime] overrides previous : org.hibernate.type.ZonedDateTimeType@d504137 
+INFO   [14:09:30.583] [main] o.h.h.i.QueryTranslatorFactoryInitiator -  HHH000397: Using ASTQueryTranslatorFactory 
+INFO   [14:09:30.790] [main] d.d.b.BTPApplication -  register the jersey REST resources 
+INFO   [14:09:30.800] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [14:09:30.800] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [14:09:30.811] [main] i.d.s.ServerFactory -  Starting Badminton Tournament Platform
+ 
+INFO   [14:09:30.935] [main] o.e.j.s.SetUIDListener -  Opened application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:09:30.936] [main] o.e.j.s.SetUIDListener -  Opened admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:09:30.939] [main] o.e.j.s.Server -  jetty-9.4.2.v20170220 
+WARN   [14:09:31.533] [main] o.g.j.i.i.Providers -  A provider de.dokukaefer.btp.exceptions.UnprocessableException registered in SERVER runtime does not implement any provider interfaces applicable in the SERVER runtime. Due to constraint configuration problems the provider de.dokukaefer.btp.exceptions.UnprocessableException will be ignored.  
+INFO   [14:09:31.877] [main] i.d.j.DropwizardResourceConfig -  The following paths were found for the configured resources:
+
+    GET     /api/games (de.dokukaefer.btp.res.GameResource)
+    POST    /api/games (de.dokukaefer.btp.res.GameResource)
+    GET     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    PUT     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    GET     /api/players (de.dokukaefer.btp.res.PlayerResource)
+    POST    /api/players (de.dokukaefer.btp.res.PlayerResource)
+    DELETE  /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    PUT     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/swagger (io.federecio.dropwizard.swagger.SwaggerResource)
+    GET     /api/swagger.{type:json|yaml} (io.swagger.jaxrs.listing.ApiListingResource)
+    GET     /api/teams (de.dokukaefer.btp.res.TeamResource)
+    POST    /api/teams (de.dokukaefer.btp.res.TeamResource)
+    DELETE  /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    PUT     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid}/xml (de.dokukaefer.btp.res.TeamResource)
+ 
+INFO   [14:09:31.878] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@6533629{/,null,AVAILABLE} 
+INFO   [14:09:31.886] [main] i.d.s.AdminEnvironment -  tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+ 
+INFO   [14:09:31.896] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@b3a8455{/,null,AVAILABLE} 
+INFO   [14:09:31.916] [main] o.e.j.s.AbstractConnector -  Started application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:09:31.919] [main] o.e.j.s.AbstractConnector -  Started admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:09:31.919] [main] o.e.j.s.Server -  Started @7217ms 
+INFO   [14:09:32.265] [main] o.e.j.s.AbstractConnector -  Stopped application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:09:32.266] [main] o.e.j.s.AbstractConnector -  Stopped admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:09:32.268] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@b3a8455{/,null,UNAVAILABLE} 
+INFO   [14:09:32.272] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@6533629{/,null,UNAVAILABLE} 
+INFO   [14:17:28.549] [main] o.e.j.u.log -  Logging initialized @3164ms to org.eclipse.jetty.util.log.Slf4jLog 
+INFO   [14:17:28.662] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [14:17:28.664] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [14:17:28.669] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-assets for path /api/swagger-static/* 
+INFO   [14:17:28.708] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-oauth2-connect for path /apio2c.html/* 
+INFO   [14:17:28.850] [main] o.r.Reflections -  Reflections took 117 ms to scan 2 urls, producing 92 keys and 110 values  
+INFO   [14:17:29.194] [main] i.d.b.a.ConfiguredAssetsBundle -  Registering ConfiguredAssetBundle with name: assets for path /* 
+INFO   [14:17:29.478] [main] o.h.Version -  HHH000412: Hibernate Core {5.2.8.Final} 
+INFO   [14:17:29.482] [main] o.h.c.Environment -  HHH000206: hibernate.properties not found 
+INFO   [14:17:29.501] [main] i.d.h.SessionFactoryFactory -  Entity classes: [de.dokukaefer.btp.core.Game, de.dokukaefer.btp.core.Player, de.dokukaefer.btp.core.Result, de.dokukaefer.btp.core.Team] 
+INFO   [14:17:29.561] [main] o.h.a.c.Version -  HCANN000001: Hibernate Commons Annotations {5.0.1.Final} 
+INFO   [14:17:30.001] [main] o.h.d.Dialect -  HHH000400: Using dialect: org.hibernate.dialect.H2Dialect 
+INFO   [14:17:30.588] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.util.Currency] overrides previous : org.hibernate.type.CurrencyType@1d6713dd 
+INFO   [14:17:30.589] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Duration] overrides previous : org.hibernate.type.DurationType@3b39e79b 
+INFO   [14:17:30.589] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Instant] overrides previous : org.hibernate.type.InstantType@2f86f9cf 
+INFO   [14:17:30.589] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDate] overrides previous : org.hibernate.type.LocalDateType@7e2bd5e6 
+INFO   [14:17:30.590] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDateTime] overrides previous : org.hibernate.type.LocalDateTimeType@76a1146d 
+INFO   [14:17:30.590] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalTime] overrides previous : org.hibernate.type.LocalTimeType@3386c206 
+INFO   [14:17:30.590] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetDateTime] overrides previous : org.hibernate.type.OffsetDateTimeType@1322b575 
+INFO   [14:17:30.590] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetTime] overrides previous : org.hibernate.type.OffsetTimeType@6dded900 
+INFO   [14:17:30.590] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.ZonedDateTime] overrides previous : org.hibernate.type.ZonedDateTimeType@d504137 
+INFO   [14:17:30.984] [main] o.h.h.i.QueryTranslatorFactoryInitiator -  HHH000397: Using ASTQueryTranslatorFactory 
+INFO   [14:17:31.192] [main] d.d.b.BTPApplication -  register the jersey REST resources 
+INFO   [14:17:31.202] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [14:17:31.203] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [14:17:31.215] [main] i.d.s.ServerFactory -  Starting Badminton Tournament Platform
+ 
+INFO   [14:17:31.325] [main] o.e.j.s.SetUIDListener -  Opened application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:17:31.325] [main] o.e.j.s.SetUIDListener -  Opened admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:17:31.331] [main] o.e.j.s.Server -  jetty-9.4.2.v20170220 
+WARN   [14:17:32.013] [main] o.g.j.i.i.Providers -  A provider de.dokukaefer.btp.exceptions.UnprocessableException registered in SERVER runtime does not implement any provider interfaces applicable in the SERVER runtime. Due to constraint configuration problems the provider de.dokukaefer.btp.exceptions.UnprocessableException will be ignored.  
+INFO   [14:17:32.419] [main] i.d.j.DropwizardResourceConfig -  The following paths were found for the configured resources:
+
+    GET     /api/games (de.dokukaefer.btp.res.GameResource)
+    POST    /api/games (de.dokukaefer.btp.res.GameResource)
+    GET     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    PUT     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    GET     /api/players (de.dokukaefer.btp.res.PlayerResource)
+    POST    /api/players (de.dokukaefer.btp.res.PlayerResource)
+    DELETE  /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    PUT     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/swagger (io.federecio.dropwizard.swagger.SwaggerResource)
+    GET     /api/swagger.{type:json|yaml} (io.swagger.jaxrs.listing.ApiListingResource)
+    GET     /api/teams (de.dokukaefer.btp.res.TeamResource)
+    POST    /api/teams (de.dokukaefer.btp.res.TeamResource)
+    DELETE  /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    PUT     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid}/xml (de.dokukaefer.btp.res.TeamResource)
+ 
+INFO   [14:17:32.420] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@6533629{/,null,AVAILABLE} 
+INFO   [14:17:32.428] [main] i.d.s.AdminEnvironment -  tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+ 
+INFO   [14:17:32.441] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@b3a8455{/,null,AVAILABLE} 
+INFO   [14:17:32.467] [main] o.e.j.s.AbstractConnector -  Started application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:17:32.471] [main] o.e.j.s.AbstractConnector -  Started admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:17:32.471] [main] o.e.j.s.Server -  Started @7088ms 
+INFO   [14:17:32.924] [main] o.e.j.s.AbstractConnector -  Stopped application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:17:32.925] [main] o.e.j.s.AbstractConnector -  Stopped admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:17:32.927] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@b3a8455{/,null,UNAVAILABLE} 
+INFO   [14:17:32.930] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@6533629{/,null,UNAVAILABLE} 
+INFO   [14:22:14.234] [main] o.e.j.u.log -  Logging initialized @3348ms to org.eclipse.jetty.util.log.Slf4jLog 
+INFO   [14:22:14.365] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [14:22:14.366] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [14:22:14.372] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-assets for path /api/swagger-static/* 
+INFO   [14:22:14.411] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-oauth2-connect for path /apio2c.html/* 
+INFO   [14:22:14.560] [main] o.r.Reflections -  Reflections took 120 ms to scan 2 urls, producing 92 keys and 111 values  
+INFO   [14:22:14.852] [main] i.d.b.a.ConfiguredAssetsBundle -  Registering ConfiguredAssetBundle with name: assets for path /* 
+INFO   [14:22:15.106] [main] o.h.Version -  HHH000412: Hibernate Core {5.2.8.Final} 
+INFO   [14:22:15.109] [main] o.h.c.Environment -  HHH000206: hibernate.properties not found 
+INFO   [14:22:15.128] [main] i.d.h.SessionFactoryFactory -  Entity classes: [de.dokukaefer.btp.core.Game, de.dokukaefer.btp.core.Player, de.dokukaefer.btp.core.Result, de.dokukaefer.btp.core.Team] 
+INFO   [14:22:15.194] [main] o.h.a.c.Version -  HCANN000001: Hibernate Commons Annotations {5.0.1.Final} 
+INFO   [14:22:15.760] [main] o.h.d.Dialect -  HHH000400: Using dialect: org.hibernate.dialect.H2Dialect 
+INFO   [14:22:16.372] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.util.Currency] overrides previous : org.hibernate.type.CurrencyType@1d6713dd 
+INFO   [14:22:16.373] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Duration] overrides previous : org.hibernate.type.DurationType@3b39e79b 
+INFO   [14:22:16.374] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Instant] overrides previous : org.hibernate.type.InstantType@2f86f9cf 
+INFO   [14:22:16.374] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDate] overrides previous : org.hibernate.type.LocalDateType@7e2bd5e6 
+INFO   [14:22:16.375] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDateTime] overrides previous : org.hibernate.type.LocalDateTimeType@76a1146d 
+INFO   [14:22:16.375] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalTime] overrides previous : org.hibernate.type.LocalTimeType@3386c206 
+INFO   [14:22:16.375] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetDateTime] overrides previous : org.hibernate.type.OffsetDateTimeType@1322b575 
+INFO   [14:22:16.376] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetTime] overrides previous : org.hibernate.type.OffsetTimeType@6dded900 
+INFO   [14:22:16.377] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.ZonedDateTime] overrides previous : org.hibernate.type.ZonedDateTimeType@d504137 
+INFO   [14:22:16.799] [main] o.h.h.i.QueryTranslatorFactoryInitiator -  HHH000397: Using ASTQueryTranslatorFactory 
+INFO   [14:22:17.051] [main] d.d.b.BTPApplication -  register the jersey REST resources 
+INFO   [14:22:17.065] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [14:22:17.066] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [14:22:17.082] [main] i.d.s.ServerFactory -  Starting Badminton Tournament Platform
+ 
+INFO   [14:22:17.232] [main] o.e.j.s.SetUIDListener -  Opened application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:22:17.233] [main] o.e.j.s.SetUIDListener -  Opened admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:22:17.239] [main] o.e.j.s.Server -  jetty-9.4.2.v20170220 
+WARN   [14:22:17.930] [main] o.g.j.i.i.Providers -  A provider de.dokukaefer.btp.exceptions.UnprocessableException registered in SERVER runtime does not implement any provider interfaces applicable in the SERVER runtime. Due to constraint configuration problems the provider de.dokukaefer.btp.exceptions.UnprocessableException will be ignored.  
+INFO   [14:22:18.374] [main] i.d.j.DropwizardResourceConfig -  The following paths were found for the configured resources:
+
+    GET     /api/games (de.dokukaefer.btp.res.GameResource)
+    POST    /api/games (de.dokukaefer.btp.res.GameResource)
+    GET     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    PUT     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    GET     /api/players (de.dokukaefer.btp.res.PlayerResource)
+    POST    /api/players (de.dokukaefer.btp.res.PlayerResource)
+    DELETE  /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    PUT     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/swagger (io.federecio.dropwizard.swagger.SwaggerResource)
+    GET     /api/swagger.{type:json|yaml} (io.swagger.jaxrs.listing.ApiListingResource)
+    GET     /api/teams (de.dokukaefer.btp.res.TeamResource)
+    POST    /api/teams (de.dokukaefer.btp.res.TeamResource)
+    DELETE  /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    PUT     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid}/xml (de.dokukaefer.btp.res.TeamResource)
+ 
+INFO   [14:22:18.378] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@6533629{/,null,AVAILABLE} 
+INFO   [14:22:18.384] [main] i.d.s.AdminEnvironment -  tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+ 
+INFO   [14:22:18.397] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@b3a8455{/,null,AVAILABLE} 
+INFO   [14:22:18.435] [main] o.e.j.s.AbstractConnector -  Started application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:22:18.438] [main] o.e.j.s.AbstractConnector -  Started admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:22:18.438] [main] o.e.j.s.Server -  Started @7554ms 
+INFO   [14:22:18.884] [main] o.e.j.s.AbstractConnector -  Stopped application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:22:18.885] [main] o.e.j.s.AbstractConnector -  Stopped admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:22:18.887] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@b3a8455{/,null,UNAVAILABLE} 
+INFO   [14:22:18.890] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@6533629{/,null,UNAVAILABLE} 
+INFO   [14:34:12.358] [main] o.e.j.u.log -  Logging initialized @2986ms to org.eclipse.jetty.util.log.Slf4jLog 
+INFO   [14:34:12.524] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [14:34:12.527] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [14:34:12.534] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-assets for path /api/swagger-static/* 
+INFO   [14:34:12.595] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-oauth2-connect for path /apio2c.html/* 
+INFO   [14:34:12.817] [main] o.r.Reflections -  Reflections took 182 ms to scan 2 urls, producing 92 keys and 111 values  
+INFO   [14:34:13.298] [main] i.d.b.a.ConfiguredAssetsBundle -  Registering ConfiguredAssetBundle with name: assets for path /* 
+INFO   [14:34:13.672] [main] o.h.Version -  HHH000412: Hibernate Core {5.2.8.Final} 
+INFO   [14:34:13.676] [main] o.h.c.Environment -  HHH000206: hibernate.properties not found 
+INFO   [14:34:13.696] [main] i.d.h.SessionFactoryFactory -  Entity classes: [de.dokukaefer.btp.core.Game, de.dokukaefer.btp.core.Player, de.dokukaefer.btp.core.Result, de.dokukaefer.btp.core.Team] 
+INFO   [14:34:13.752] [main] o.h.a.c.Version -  HCANN000001: Hibernate Commons Annotations {5.0.1.Final} 
+INFO   [14:34:14.193] [main] o.h.d.Dialect -  HHH000400: Using dialect: org.hibernate.dialect.H2Dialect 
+INFO   [14:34:14.780] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.util.Currency] overrides previous : org.hibernate.type.CurrencyType@1d6713dd 
+INFO   [14:34:14.780] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Duration] overrides previous : org.hibernate.type.DurationType@3b39e79b 
+INFO   [14:34:14.781] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Instant] overrides previous : org.hibernate.type.InstantType@2f86f9cf 
+INFO   [14:34:14.781] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDate] overrides previous : org.hibernate.type.LocalDateType@7e2bd5e6 
+INFO   [14:34:14.782] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDateTime] overrides previous : org.hibernate.type.LocalDateTimeType@76a1146d 
+INFO   [14:34:14.782] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalTime] overrides previous : org.hibernate.type.LocalTimeType@3386c206 
+INFO   [14:34:14.783] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetDateTime] overrides previous : org.hibernate.type.OffsetDateTimeType@1322b575 
+INFO   [14:34:14.783] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetTime] overrides previous : org.hibernate.type.OffsetTimeType@6dded900 
+INFO   [14:34:14.784] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.ZonedDateTime] overrides previous : org.hibernate.type.ZonedDateTimeType@d504137 
+INFO   [14:34:15.159] [main] o.h.h.i.QueryTranslatorFactoryInitiator -  HHH000397: Using ASTQueryTranslatorFactory 
+INFO   [14:34:15.375] [main] d.d.b.BTPApplication -  register the jersey REST resources 
+INFO   [14:34:15.386] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [14:34:15.387] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [14:34:15.398] [main] i.d.s.ServerFactory -  Starting Badminton Tournament Platform
+ 
+INFO   [14:34:15.519] [main] o.e.j.s.SetUIDListener -  Opened application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:34:15.519] [main] o.e.j.s.SetUIDListener -  Opened admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:34:15.523] [main] o.e.j.s.Server -  jetty-9.4.2.v20170220 
+WARN   [14:34:16.157] [main] o.g.j.i.i.Providers -  A provider de.dokukaefer.btp.exceptions.UnprocessableException registered in SERVER runtime does not implement any provider interfaces applicable in the SERVER runtime. Due to constraint configuration problems the provider de.dokukaefer.btp.exceptions.UnprocessableException will be ignored.  
+INFO   [14:34:16.467] [main] i.d.j.DropwizardResourceConfig -  The following paths were found for the configured resources:
+
+    GET     /api/games (de.dokukaefer.btp.res.GameResource)
+    POST    /api/games (de.dokukaefer.btp.res.GameResource)
+    GET     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    PUT     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    GET     /api/players (de.dokukaefer.btp.res.PlayerResource)
+    POST    /api/players (de.dokukaefer.btp.res.PlayerResource)
+    DELETE  /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    PUT     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/swagger (io.federecio.dropwizard.swagger.SwaggerResource)
+    GET     /api/swagger.{type:json|yaml} (io.swagger.jaxrs.listing.ApiListingResource)
+    GET     /api/teams (de.dokukaefer.btp.res.TeamResource)
+    POST    /api/teams (de.dokukaefer.btp.res.TeamResource)
+    DELETE  /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    PUT     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid}/xml (de.dokukaefer.btp.res.TeamResource)
+ 
+INFO   [14:34:16.470] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@6533629{/,null,AVAILABLE} 
+INFO   [14:34:16.473] [main] i.d.s.AdminEnvironment -  tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+ 
+INFO   [14:34:16.480] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@b3a8455{/,null,AVAILABLE} 
+INFO   [14:34:16.496] [main] o.e.j.s.AbstractConnector -  Started application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:34:16.499] [main] o.e.j.s.AbstractConnector -  Started admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:34:16.499] [main] o.e.j.s.Server -  Started @7128ms 
+INFO   [14:34:16.882] [main] o.e.j.s.AbstractConnector -  Stopped application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:34:16.884] [main] o.e.j.s.AbstractConnector -  Stopped admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:34:16.886] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@b3a8455{/,null,UNAVAILABLE} 
+INFO   [14:34:16.891] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@6533629{/,null,UNAVAILABLE} 
+INFO   [14:41:24.889] [main] o.e.j.u.log -  Logging initialized @2661ms to org.eclipse.jetty.util.log.Slf4jLog 
+INFO   [14:41:25.006] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [14:41:25.008] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [14:41:25.012] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-assets for path /api/swagger-static/* 
+INFO   [14:41:25.049] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-oauth2-connect for path /apio2c.html/* 
+INFO   [14:41:25.194] [main] o.r.Reflections -  Reflections took 122 ms to scan 2 urls, producing 92 keys and 111 values  
+INFO   [14:41:25.534] [main] i.d.b.a.ConfiguredAssetsBundle -  Registering ConfiguredAssetBundle with name: assets for path /* 
+INFO   [14:41:25.892] [main] o.h.Version -  HHH000412: Hibernate Core {5.2.8.Final} 
+INFO   [14:41:25.902] [main] o.h.c.Environment -  HHH000206: hibernate.properties not found 
+INFO   [14:41:25.931] [main] i.d.h.SessionFactoryFactory -  Entity classes: [de.dokukaefer.btp.core.Game, de.dokukaefer.btp.core.Player, de.dokukaefer.btp.core.Result, de.dokukaefer.btp.core.Team] 
+INFO   [14:41:26.014] [main] o.h.a.c.Version -  HCANN000001: Hibernate Commons Annotations {5.0.1.Final} 
+INFO   [14:41:26.614] [main] o.h.d.Dialect -  HHH000400: Using dialect: org.hibernate.dialect.H2Dialect 
+INFO   [14:41:27.603] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.util.Currency] overrides previous : org.hibernate.type.CurrencyType@203765b2 
+INFO   [14:41:27.603] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Duration] overrides previous : org.hibernate.type.DurationType@7e050be1 
+INFO   [14:41:27.603] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Instant] overrides previous : org.hibernate.type.InstantType@506aa618 
+INFO   [14:41:27.603] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDate] overrides previous : org.hibernate.type.LocalDateType@1d6713dd 
+INFO   [14:41:27.604] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDateTime] overrides previous : org.hibernate.type.LocalDateTimeType@3b39e79b 
+INFO   [14:41:27.604] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalTime] overrides previous : org.hibernate.type.LocalTimeType@2f86f9cf 
+INFO   [14:41:27.604] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetDateTime] overrides previous : org.hibernate.type.OffsetDateTimeType@adafe19 
+INFO   [14:41:27.604] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetTime] overrides previous : org.hibernate.type.OffsetTimeType@7e2bd5e6 
+INFO   [14:41:27.605] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.ZonedDateTime] overrides previous : org.hibernate.type.ZonedDateTimeType@76a1146d 
+INFO   [14:41:28.061] [main] o.h.h.i.QueryTranslatorFactoryInitiator -  HHH000397: Using ASTQueryTranslatorFactory 
+INFO   [14:41:28.268] [main] d.d.b.BTPApplication -  register the jersey REST resources 
+INFO   [14:41:28.287] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [14:41:28.287] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [14:41:28.297] [main] i.d.s.ServerFactory -  Starting Badminton Tournament Platform
+ 
+INFO   [14:41:28.401] [main] o.e.j.s.SetUIDListener -  Opened application@bc8d68b{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:41:28.402] [main] o.e.j.s.SetUIDListener -  Opened admin@2fa212df{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:41:28.406] [main] o.e.j.s.Server -  jetty-9.4.2.v20170220 
+WARN   [14:41:28.986] [main] o.g.j.i.i.Providers -  A provider de.dokukaefer.btp.exceptions.UnprocessableException registered in SERVER runtime does not implement any provider interfaces applicable in the SERVER runtime. Due to constraint configuration problems the provider de.dokukaefer.btp.exceptions.UnprocessableException will be ignored.  
+INFO   [14:41:29.338] [main] i.d.j.DropwizardResourceConfig -  The following paths were found for the configured resources:
+
+    GET     /api/games (de.dokukaefer.btp.res.GameResource)
+    POST    /api/games (de.dokukaefer.btp.res.GameResource)
+    GET     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    PUT     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    GET     /api/players (de.dokukaefer.btp.res.PlayerResource)
+    POST    /api/players (de.dokukaefer.btp.res.PlayerResource)
+    DELETE  /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    PUT     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/swagger (io.federecio.dropwizard.swagger.SwaggerResource)
+    GET     /api/swagger.{type:json|yaml} (io.swagger.jaxrs.listing.ApiListingResource)
+    GET     /api/teams (de.dokukaefer.btp.res.TeamResource)
+    POST    /api/teams (de.dokukaefer.btp.res.TeamResource)
+    DELETE  /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    PUT     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid}/xml (de.dokukaefer.btp.res.TeamResource)
+ 
+INFO   [14:41:29.341] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@445058e8{/,null,AVAILABLE} 
+INFO   [14:41:29.350] [main] i.d.s.AdminEnvironment -  tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+ 
+INFO   [14:41:29.364] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@74a1d60e{/,null,AVAILABLE} 
+INFO   [14:41:29.403] [main] o.e.j.s.AbstractConnector -  Started application@bc8d68b{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:41:29.405] [main] o.e.j.s.AbstractConnector -  Started admin@2fa212df{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:41:29.406] [main] o.e.j.s.Server -  Started @7180ms 
+INFO   [14:41:29.855] [dw-25 - GET /api/teams] d.d.b.r.TeamResource -  Unknown user detected in GET method  
+INFO   [14:41:29.884] [dw-25 - GET /api/teams] o.h.e.i.StatisticalLoggingSessionEventListener -  Session Metrics {
+    99513 nanoseconds spent acquiring 2 JDBC connections;
+    49980 nanoseconds spent releasing 2 JDBC connections;
+    368600 nanoseconds spent preparing 1 JDBC statements;
+    77201 nanoseconds spent executing 1 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    45517 nanoseconds spent executing 1 partial-flushes (flushing a total of 0 entities and 0 collections)
+} 
+INFO   [14:41:29.975] [main] o.e.j.s.AbstractConnector -  Stopped application@bc8d68b{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [14:41:29.976] [main] o.e.j.s.AbstractConnector -  Stopped admin@2fa212df{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [14:41:29.978] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@74a1d60e{/,null,UNAVAILABLE} 
+INFO   [14:41:29.982] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@445058e8{/,null,UNAVAILABLE} 
+INFO   [16:21:56.983] [main] o.e.j.u.log -  Logging initialized @2897ms to org.eclipse.jetty.util.log.Slf4jLog 
+INFO   [16:21:57.110] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [16:21:57.112] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [16:21:57.118] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-assets for path /api/swagger-static/* 
+INFO   [16:21:57.157] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-oauth2-connect for path /apio2c.html/* 
+INFO   [16:21:57.319] [main] o.r.Reflections -  Reflections took 138 ms to scan 2 urls, producing 93 keys and 112 values  
+INFO   [16:21:57.697] [main] i.d.b.a.ConfiguredAssetsBundle -  Registering ConfiguredAssetBundle with name: assets for path /* 
+INFO   [16:21:58.009] [main] o.h.Version -  HHH000412: Hibernate Core {5.2.8.Final} 
+INFO   [16:21:58.013] [main] o.h.c.Environment -  HHH000206: hibernate.properties not found 
+INFO   [16:21:58.036] [main] i.d.h.SessionFactoryFactory -  Entity classes: [de.dokukaefer.btp.core.Game, de.dokukaefer.btp.core.Player, de.dokukaefer.btp.core.Result, de.dokukaefer.btp.core.Team] 
+INFO   [16:21:58.104] [main] o.h.a.c.Version -  HCANN000001: Hibernate Commons Annotations {5.0.1.Final} 
+INFO   [16:21:58.915] [main] o.h.d.Dialect -  HHH000400: Using dialect: org.hibernate.dialect.H2Dialect 
+INFO   [16:21:59.668] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.util.Currency] overrides previous : org.hibernate.type.CurrencyType@1d6713dd 
+INFO   [16:21:59.669] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Duration] overrides previous : org.hibernate.type.DurationType@3b39e79b 
+INFO   [16:21:59.669] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Instant] overrides previous : org.hibernate.type.InstantType@2f86f9cf 
+INFO   [16:21:59.669] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDate] overrides previous : org.hibernate.type.LocalDateType@7e2bd5e6 
+INFO   [16:21:59.669] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDateTime] overrides previous : org.hibernate.type.LocalDateTimeType@76a1146d 
+INFO   [16:21:59.670] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalTime] overrides previous : org.hibernate.type.LocalTimeType@3386c206 
+INFO   [16:21:59.671] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetDateTime] overrides previous : org.hibernate.type.OffsetDateTimeType@1322b575 
+INFO   [16:21:59.671] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetTime] overrides previous : org.hibernate.type.OffsetTimeType@6dded900 
+INFO   [16:21:59.671] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.ZonedDateTime] overrides previous : org.hibernate.type.ZonedDateTimeType@d504137 
+INFO   [16:22:00.110] [main] o.h.h.i.QueryTranslatorFactoryInitiator -  HHH000397: Using ASTQueryTranslatorFactory 
+INFO   [16:22:00.313] [main] d.d.b.BTPApplication -  register the jersey REST resources 
+INFO   [16:22:00.327] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [16:22:00.327] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [16:22:00.340] [main] i.d.s.ServerFactory -  Starting Badminton Tournament Platform
+ 
+INFO   [16:22:00.453] [main] o.e.j.s.SetUIDListener -  Opened application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [16:22:00.453] [main] o.e.j.s.SetUIDListener -  Opened admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [16:22:00.457] [main] o.e.j.s.Server -  jetty-9.4.2.v20170220 
+WARN   [16:22:00.969] [main] o.g.j.i.i.Providers -  A provider de.dokukaefer.btp.exceptions.UnprocessableException registered in SERVER runtime does not implement any provider interfaces applicable in the SERVER runtime. Due to constraint configuration problems the provider de.dokukaefer.btp.exceptions.UnprocessableException will be ignored.  
+INFO   [16:22:01.378] [main] i.d.j.DropwizardResourceConfig -  The following paths were found for the configured resources:
+
+    GET     /api/games (de.dokukaefer.btp.res.GameResource)
+    POST    /api/games (de.dokukaefer.btp.res.GameResource)
+    GET     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    PUT     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    GET     /api/players (de.dokukaefer.btp.res.PlayerResource)
+    POST    /api/players (de.dokukaefer.btp.res.PlayerResource)
+    DELETE  /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    PUT     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/swagger (io.federecio.dropwizard.swagger.SwaggerResource)
+    GET     /api/swagger.{type:json|yaml} (io.swagger.jaxrs.listing.ApiListingResource)
+    GET     /api/teams (de.dokukaefer.btp.res.TeamResource)
+    POST    /api/teams (de.dokukaefer.btp.res.TeamResource)
+    DELETE  /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    PUT     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid}/xml (de.dokukaefer.btp.res.TeamResource)
+ 
+INFO   [16:22:01.387] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@6533629{/,null,AVAILABLE} 
+INFO   [16:22:01.394] [main] i.d.s.AdminEnvironment -  tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+ 
+INFO   [16:22:01.406] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@b3a8455{/,null,AVAILABLE} 
+INFO   [16:22:01.437] [main] o.e.j.s.AbstractConnector -  Started application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [16:22:01.440] [main] o.e.j.s.AbstractConnector -  Started admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [16:22:01.441] [main] o.e.j.s.Server -  Started @7357ms 
+INFO   [16:22:01.833] [main] o.e.j.s.AbstractConnector -  Stopped application@1c011855{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [16:22:01.835] [main] o.e.j.s.AbstractConnector -  Stopped admin@6591f8ea{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [16:22:01.837] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@b3a8455{/,null,UNAVAILABLE} 
+INFO   [16:22:01.841] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@6533629{/,null,UNAVAILABLE} 
+INFO   [22:44:20.767] [main] o.e.j.u.log -  Logging initialized @7059ms to org.eclipse.jetty.util.log.Slf4jLog 
+INFO   [22:44:20.922] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [22:44:20.924] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [22:44:20.929] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-assets for path /api/swagger-static/* 
+INFO   [22:44:20.974] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-oauth2-connect for path /apio2c.html/* 
+INFO   [22:44:21.106] [main] o.r.Reflections -  Reflections took 94 ms to scan 2 urls, producing 88 keys and 106 values  
+INFO   [22:44:21.396] [main] i.d.b.a.ConfiguredAssetsBundle -  Registering ConfiguredAssetBundle with name: assets for path /* 
+INFO   [22:44:21.413] [main] i.d.h.SessionFactoryFactory -  Entity classes: [de.dokukaefer.btp.core.Game, de.dokukaefer.btp.core.Player, de.dokukaefer.btp.core.Result, de.dokukaefer.btp.core.Team] 
+INFO   [22:44:21.519] [main] o.h.d.Dialect -  HHH000400: Using dialect: org.hibernate.dialect.H2Dialect 
+INFO   [22:44:21.554] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.util.Currency] overrides previous : org.hibernate.type.CurrencyType@10aa41f2 
+INFO   [22:44:21.554] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Duration] overrides previous : org.hibernate.type.DurationType@4c178a76 
+INFO   [22:44:21.554] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Instant] overrides previous : org.hibernate.type.InstantType@5e5d171f 
+INFO   [22:44:21.555] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDate] overrides previous : org.hibernate.type.LocalDateType@70325e14 
+INFO   [22:44:21.555] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDateTime] overrides previous : org.hibernate.type.LocalDateTimeType@6c40365c 
+INFO   [22:44:21.555] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalTime] overrides previous : org.hibernate.type.LocalTimeType@6f4a47c7 
+INFO   [22:44:21.555] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetDateTime] overrides previous : org.hibernate.type.OffsetDateTimeType@43c1b556 
+INFO   [22:44:21.555] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetTime] overrides previous : org.hibernate.type.OffsetTimeType@4988d8b8 
+INFO   [22:44:21.555] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.ZonedDateTime] overrides previous : org.hibernate.type.ZonedDateTimeType@4e50c791 
+INFO   [22:44:21.623] [main] o.h.h.i.QueryTranslatorFactoryInitiator -  HHH000397: Using ASTQueryTranslatorFactory 
+INFO   [22:44:21.667] [main] d.d.b.BTPApplication -  register the jersey REST resources 
+INFO   [22:44:21.683] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [22:44:21.683] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [22:44:21.685] [main] i.d.s.ServerFactory -  Starting Badminton Tournament Platform
+ 
+INFO   [22:44:21.798] [main] o.e.j.s.SetUIDListener -  Opened application@62f6185a{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [22:44:21.799] [main] o.e.j.s.SetUIDListener -  Opened admin@34b462e0{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [22:44:21.804] [main] o.e.j.s.Server -  jetty-9.4.2.v20170220 
+WARN   [22:44:22.389] [main] o.g.j.i.i.Providers -  A provider de.dokukaefer.btp.exceptions.UnprocessableException registered in SERVER runtime does not implement any provider interfaces applicable in the SERVER runtime. Due to constraint configuration problems the provider de.dokukaefer.btp.exceptions.UnprocessableException will be ignored.  
+INFO   [22:44:22.786] [main] i.d.j.DropwizardResourceConfig -  The following paths were found for the configured resources:
+
+    GET     /api/games (de.dokukaefer.btp.res.GameResource)
+    POST    /api/games (de.dokukaefer.btp.res.GameResource)
+    GET     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    PUT     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    GET     /api/players (de.dokukaefer.btp.res.PlayerResource)
+    POST    /api/players (de.dokukaefer.btp.res.PlayerResource)
+    DELETE  /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    PUT     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/swagger (io.federecio.dropwizard.swagger.SwaggerResource)
+    GET     /api/swagger.{type:json|yaml} (io.swagger.jaxrs.listing.ApiListingResource)
+    GET     /api/teams (de.dokukaefer.btp.res.TeamResource)
+    POST    /api/teams (de.dokukaefer.btp.res.TeamResource)
+    DELETE  /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    PUT     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid}/xml (de.dokukaefer.btp.res.TeamResource)
+ 
+INFO   [22:44:22.795] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@53a16dd6{/,null,AVAILABLE} 
+INFO   [22:44:22.801] [main] i.d.s.AdminEnvironment -  tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+ 
+INFO   [22:44:22.814] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@42457891{/,null,AVAILABLE} 
+INFO   [22:44:22.851] [main] o.e.j.s.AbstractConnector -  Started application@62f6185a{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [22:44:22.855] [main] o.e.j.s.AbstractConnector -  Started admin@34b462e0{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [22:44:22.856] [main] o.e.j.s.Server -  Started @9148ms 
+INFO   [22:44:22.903] [main] o.e.j.s.AbstractConnector -  Stopped application@62f6185a{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [22:44:22.912] [main] o.e.j.s.AbstractConnector -  Stopped admin@34b462e0{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [22:44:22.916] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@42457891{/,null,UNAVAILABLE} 
+INFO   [22:44:22.922] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@53a16dd6{/,null,UNAVAILABLE} 
+INFO   [22:57:09.207] [main] o.e.j.u.log -  Logging initialized @8750ms to org.eclipse.jetty.util.log.Slf4jLog 
+INFO   [22:57:09.288] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [22:57:09.291] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [22:57:09.300] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-assets for path /api/swagger-static/* 
+INFO   [22:57:09.388] [main] i.d.a.AssetsBundle -  Registering AssetBundle with name: swagger-oauth2-connect for path /apio2c.html/* 
+INFO   [22:57:09.553] [main] o.r.Reflections -  Reflections took 120 ms to scan 2 urls, producing 88 keys and 106 values  
+INFO   [22:57:09.875] [main] i.d.b.a.ConfiguredAssetsBundle -  Registering ConfiguredAssetBundle with name: assets for path /* 
+INFO   [22:57:09.895] [main] i.d.h.SessionFactoryFactory -  Entity classes: [de.dokukaefer.btp.core.Game, de.dokukaefer.btp.core.Player, de.dokukaefer.btp.core.Result, de.dokukaefer.btp.core.Team] 
+INFO   [22:57:10.010] [main] o.h.d.Dialect -  HHH000400: Using dialect: org.hibernate.dialect.H2Dialect 
+INFO   [22:57:10.044] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.util.Currency] overrides previous : org.hibernate.type.CurrencyType@19d481b 
+INFO   [22:57:10.045] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Duration] overrides previous : org.hibernate.type.DurationType@5ab9e72c 
+INFO   [22:57:10.046] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.Instant] overrides previous : org.hibernate.type.InstantType@574b560f 
+INFO   [22:57:10.047] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDate] overrides previous : org.hibernate.type.LocalDateType@69fb6037 
+INFO   [22:57:10.048] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalDateTime] overrides previous : org.hibernate.type.LocalDateTimeType@157853da 
+INFO   [22:57:10.048] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.LocalTime] overrides previous : org.hibernate.type.LocalTimeType@55f616cf 
+INFO   [22:57:10.053] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetDateTime] overrides previous : org.hibernate.type.OffsetDateTimeType@41c2284a 
+INFO   [22:57:10.054] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.OffsetTime] overrides previous : org.hibernate.type.OffsetTimeType@4a668b6e 
+INFO   [22:57:10.059] [main] o.h.t.BasicTypeRegistry -  HHH000270: Type registration [java.time.ZonedDateTime] overrides previous : org.hibernate.type.ZonedDateTimeType@152aa092 
+INFO   [22:57:10.191] [main] o.h.h.i.QueryTranslatorFactoryInitiator -  HHH000397: Using ASTQueryTranslatorFactory 
+INFO   [22:57:10.211] [main] d.d.b.BTPApplication -  register the jersey REST resources 
+INFO   [22:57:10.224] [main] i.d.s.DefaultServerFactory -  Registering jersey handler with root path prefix: / 
+INFO   [22:57:10.224] [main] i.d.s.DefaultServerFactory -  Registering admin handler with root path prefix: / 
+INFO   [22:57:10.237] [main] i.d.s.ServerFactory -  Starting Badminton Tournament Platform
+ 
+INFO   [22:57:10.387] [main] o.e.j.s.SetUIDListener -  Opened application@75c30a4f{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [22:57:10.387] [main] o.e.j.s.SetUIDListener -  Opened admin@360e4235{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [22:57:10.393] [main] o.e.j.s.Server -  jetty-9.4.2.v20170220 
+WARN   [22:57:10.545] [main] o.g.j.i.i.Providers -  A provider de.dokukaefer.btp.exceptions.UnprocessableException registered in SERVER runtime does not implement any provider interfaces applicable in the SERVER runtime. Due to constraint configuration problems the provider de.dokukaefer.btp.exceptions.UnprocessableException will be ignored.  
+INFO   [22:57:10.726] [main] i.d.j.DropwizardResourceConfig -  The following paths were found for the configured resources:
+
+    GET     /api/games (de.dokukaefer.btp.res.GameResource)
+    POST    /api/games (de.dokukaefer.btp.res.GameResource)
+    GET     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    PUT     /api/games/{gameid} (de.dokukaefer.btp.res.GameResource)
+    GET     /api/players (de.dokukaefer.btp.res.PlayerResource)
+    POST    /api/players (de.dokukaefer.btp.res.PlayerResource)
+    DELETE  /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    PUT     /api/players/{playerid} (de.dokukaefer.btp.res.PlayerResource)
+    GET     /api/swagger (io.federecio.dropwizard.swagger.SwaggerResource)
+    GET     /api/swagger.{type:json|yaml} (io.swagger.jaxrs.listing.ApiListingResource)
+    GET     /api/teams (de.dokukaefer.btp.res.TeamResource)
+    POST    /api/teams (de.dokukaefer.btp.res.TeamResource)
+    DELETE  /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    PUT     /api/teams/{teamid} (de.dokukaefer.btp.res.TeamResource)
+    GET     /api/teams/{teamid}/xml (de.dokukaefer.btp.res.TeamResource)
+ 
+INFO   [22:57:10.728] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@3c2e73ce{/,null,AVAILABLE} 
+INFO   [22:57:10.743] [main] i.d.s.AdminEnvironment -  tasks = 
+
+    POST    /tasks/log-level (io.dropwizard.servlets.tasks.LogConfigurationTask)
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+ 
+INFO   [22:57:10.757] [main] o.e.j.s.h.ContextHandler -  Started i.d.j.MutableServletContextHandler@183435c0{/,null,AVAILABLE} 
+INFO   [22:57:10.783] [main] o.e.j.s.AbstractConnector -  Started application@75c30a4f{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [22:57:10.786] [main] o.e.j.s.AbstractConnector -  Started admin@360e4235{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [22:57:10.786] [main] o.e.j.s.Server -  Started @10329ms 
+INFO   [22:57:10.818] [main] o.e.j.s.AbstractConnector -  Stopped application@75c30a4f{HTTP/1.1,[http/1.1]}{0.0.0.0:8080} 
+INFO   [22:57:10.820] [main] o.e.j.s.AbstractConnector -  Stopped admin@360e4235{HTTP/1.1,[http/1.1]}{0.0.0.0:8081} 
+INFO   [22:57:10.823] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@183435c0{/,null,UNAVAILABLE} 
+INFO   [22:57:10.827] [main] o.e.j.s.h.ContextHandler -  Stopped i.d.j.MutableServletContextHandler@3c2e73ce{/,null,UNAVAILABLE} 

@@ -55,7 +55,6 @@ public class TeamResource {
 		this.teamDAO = teamDAO;
 	}
 
-	  
 	//security restrictions for the resources
 	//following roles are allowed: rolesallowed, permitall and denyall
 	//see: https://spin.atomicobject.com/2016/07/26/dropwizard-dive-part-1/

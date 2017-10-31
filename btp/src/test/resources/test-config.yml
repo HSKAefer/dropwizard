@@ -10,7 +10,7 @@ database:
   # jdbc:h2:mem:btp - mem for in memory database otherwise it will be an embedded database file located at the url
   
   # url: jdbc:h2:mem:testdb # jdbc:postgresql://localhost:5432/btpdb
-  url: jdbc:h2:./target/test-btp
+  url: jdbc:h2:./target/testbtp
   
   properties:
    
@@ -24,6 +24,9 @@ database:
     hibernate.hbm2ddl.auto: update
     # hibernate.hbm2ddl.auto: create
 
+swagger:
+  resourcePackage: de.dokukaefer.btp.res #wo liegen die resourcen?
+
 # server information
 # ___________________________________________________________________________________________  
 server: 
@@ -34,7 +37,7 @@ server:
       port: 8080
   adminConnectors:
     - type: http
-      port: 8081
+      port: 8081 # $env:AMDIN_PORT:8081 # sorgt dafür, dass eine eigene Variable für den Port verwendet wird. default ist port: 8081
   rootPath: /api/ # the application path is moved to a sub-url so that an webpage (asset) can be served via the root
   maxThreads: 1024
 
@@ -64,9 +67,8 @@ logging:
        threshold: INFO # lowest level of events to print on the console / stored in file ERROR <- only errors will be stored
        queueSize: 512
        logFormat: "%-6level [%d{HH:mm:ss.SSS}] [%t] %logger{5} - %X{code} %msg %n"
-       currentLogFilename: ./target/logs/btp.log
-       archive: true
-       archivedLogFilenamePattern: ./target/logs/btp-%d{yyyy-MM-dd}-%i.log.gz
+       currentLogFilename: ./tmp/application.log
+       archivedLogFilenamePattern: ./tmp/application-%d{yyyy-MM-dd}-%i.log.gz
        archivedFileCount: 7
        timeZone: UTC
        maxFileSize: 10MB
@@ -82,3 +84,4 @@ assets: # assets only works if the dependency dropwizard-configurable-assets-bun
     /: /src/main/resources/webContent/
     #  mappings:
     # /webContent: /
+    
