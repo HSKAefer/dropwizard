@@ -133,7 +133,8 @@ Zu guter letzt noch ein kurzes Fazit zu Dropwizard
   * Testklassen vervollständigen.
   * m:n Beziehung zwischen Team und Game verbessern und ausbauen.
   * Eclipselink statt Hibernate als JPA Provider.
-  
+
 * FAZIT
+
   Anfangs war ich nicht wirklich überzeugt von Dropwizard, mitlerweile arbeitet es sich sehr gut damit. Da ich bisher nur mit DW zu tun hatte und mir der Vergleich zu anderen REST Frameworks fehlt kann ich hier keine direkten Vergleiche ziehen. Je länger man mit DW arbeitet, desto mehr fasziniert es einen, daher kann ich jedem nur empfehlen Dropwizard als REST Framework einmal anzutesten.
 
