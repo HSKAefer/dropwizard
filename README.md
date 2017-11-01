@@ -109,30 +109,30 @@ Tasks/gc ist der Garbage Collector, den man bei Bedarf über die entsprechende U
 Zu guter letzt noch ein kurzes Fazit zu Dropwizard
 
 * Positiv: 
-  *Permanente Weiterentwicklung, dadurch werden BUGS relativ schnell gefunden und beseitigt.
-  *Aktives Mitgestalten möglich, da Open Source.
-  *Leicht zu erlernen, dank ausreichend Dokumentation und Google Groups.
-  *HATEOAS Unterstützung.
-  *Swagger Unterstützung.
-  *Zusätzliche Möglichkeiten mit Authorizierung und Authentifizierung.
-  *Healthchecks über admin UI
+  * Permanente Weiterentwicklung, dadurch werden BUGS relativ schnell gefunden und beseitigt.
+  * Aktives Mitgestalten möglich, da Open Source.
+  * Leicht zu erlernen, dank ausreichend Dokumentation und Google Groups.
+  * HATEOAS Unterstützung.
+  * Swagger Unterstützung.
+  * Zusätzliche Möglichkeiten mit Authorizierung und Authentifizierung.
+  * Healthchecks über admin UI
   
 * Negativ
-  *Dokumentation recht ausführlich aber nicht immer auf dem neusten Stand und teilweise mit Fehlern bzw. falschen Dependencies.
-  *Aufbau einer Testumgebung durch zusätzliche Dependencies recht komplex und zeitintensiv
-  *Erstellen eines WAR files nicht out of the Box. (Zusätzliches Plugin - "Wizard in a Box" notwendig)
+  * Dokumentation recht ausführlich aber nicht immer auf dem neusten Stand und teilweise mit Fehlern bzw. falschen Dependencies.
+  * Aufbau einer Testumgebung durch zusätzliche Dependencies recht komplex und zeitintensiv
+  * Erstellen eines WAR files nicht out of the Box. (Zusätzliches Plugin - "Wizard in a Box" notwendig)
   
 * Probleme
-  *Nach mehrmaligem starten der Anwendung, gab es merkwürdiges Verhalten der Daten und Resourcen. Der Browser Cache hatte hier noch Daten gehalten. Am besten immer im Inkognito Modus starten.
-  *Einbinden des Swagger Bundles recht einfach. Jedoch gab es hier enorme Probleme mit dem Abgleich der verschiedenen Module und Maven Plugins. Nach einigen Exclusions und Einbinden neuer Plugins lief Swagger endlich. 
-  *Erstellen des Frontends mit AngularJS hat viel zu lange gedauert. Z.b. Routing Probleme mit neuer Version  alt: #/about, neu: !#/about
-  *Datenbank zuerst mit Liquibase und dem Migration Befehl erstellt.
+  * Nach mehrmaligem starten der Anwendung, gab es merkwürdiges Verhalten der Daten und Resourcen. Der Browser Cache hatte hier noch Daten gehalten. Am besten immer im Inkognito Modus starten.
+  * Einbinden des Swagger Bundles recht einfach. Jedoch gab es hier enorme Probleme mit dem Abgleich der verschiedenen Module und Maven Plugins. Nach einigen Exclusions und Einbinden neuer Plugins lief Swagger endlich. 
+  * Erstellen des Frontends mit AngularJS hat viel zu lange gedauert. Z.b. Routing Probleme mit neuer Version  alt: #/about, neu: !#/about
+  * Datenbank zuerst mit Liquibase und dem Migration Befehl erstellt.
   
 * TODO
-  *HATEOAS einbauen.
-  *Testklassen vervollständigen.
-  *m:n Beziehung zwischen Team und Game verbessern und ausbauen.
-  *Eclipselink statt Hibernate als JPA Provider.
+  * HATEOAS einbauen.
+  * Testklassen vervollständigen.
+  * m:n Beziehung zwischen Team und Game verbessern und ausbauen.
+  * Eclipselink statt Hibernate als JPA Provider.
   
 * FAZIT
   Anfangs war ich nicht wirklich überzeugt von Dropwizard, mitlerweile arbeitet es sich sehr gut damit. Da ich bisher nur mit DW zu tun hatte und mir der Vergleich zu anderen REST Frameworks fehlt kann ich hier keine direkten Vergleiche ziehen. Je länger man mit DW arbeitet, desto mehr fasziniert es einen, daher kann ich jedem nur empfehlen Dropwizard als REST Framework einmal anzutesten.
