@@ -140,4 +140,6 @@ Zu guter letzt noch ein kurzes Fazit zu Dropwizard
   
 * FAZIT
 
-  Anfangs war ich nicht wirklich überzeugt von Dropwizard, mitlerweile arbeitet es sich sehr gut damit. Da ich bisher nur mit DW zu tun hatte und mir der Vergleich zu anderen REST Frameworks fehlt kann ich hier keine direkten Vergleiche ziehen. Je länger man mit DW arbeitet, desto mehr fasziniert es einen, daher kann ich jedem nur empfehlen Dropwizard als REST Framework einmal anzutesten.
+  Anfangs war ich nicht wirklich überzeugt von Dropwizard, mitlerweile arbeitet es sich sehr gut damit. Da ich bisher nur mit DW zu tun hatte und mir der Vergleich zu anderen REST Frameworks fehlt kann ich hier keine direkten Vergleiche ziehen. Je länger man mit DW arbeitet, desto mehr fasziniert es einen. Man entdeckt immer mehr Features und Funktionalitäten, die sehr nützlich sind (Angefangen vom Healthchecks/ Logging, über eigene Validatoren bis hin zu Swagger oder HATEOAS).
+  
+ Daher kann ich jedem nur empfehlen Dropwizard als REST Framework zumindest einmal anzutesten und sich von seinen stärken zu überzeugen.
