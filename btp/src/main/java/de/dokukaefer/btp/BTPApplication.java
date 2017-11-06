@@ -18,6 +18,7 @@ import de.dokukaefer.btp.db.GameDAO;
 import de.dokukaefer.btp.db.PlayerDAO;
 import de.dokukaefer.btp.db.TeamDAO;
 import de.dokukaefer.btp.exceptions.UnprocessableException;
+import de.dokukaefer.btp.health.HealthCheckResource;
 import de.dokukaefer.btp.health.TeamHealthCheck;
 import de.dokukaefer.btp.res.GameResource;
 import de.dokukaefer.btp.res.PlayerResource;
@@ -125,6 +126,10 @@ public class BTPApplication extends Application<BTPConfiguration>{
 		//rootPath: /application
 //		environment.healthChecks().register("database", new DatabaseHealthCheck());
 		environment.healthChecks().register("TeamHealthCheck", new TeamHealthCheck(client));
+		
+		//map the healthchecks to localhost:8080/status instead of localhost:8081/healthcheck
+		//environment.jersey().register(new HealthCheckResource(environment.healthChecks()));
+		
 		//environment.jersey().setUrlPattern("/application/*");
 	
 	
